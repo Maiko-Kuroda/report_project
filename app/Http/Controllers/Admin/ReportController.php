@@ -10,6 +10,6 @@ class ReportController extends Controller
     //
     public function add()
     {
-        return view('admin.report.create')
+        return view('admin.report.create');
     }
 }
