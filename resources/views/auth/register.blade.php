@@ -40,12 +40,26 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="hope" class="col-md-4 col-form-label text-md-right">{{ __('Hope') }}</label>
+                            <label for="hoby" class="col-md-4 col-form-label text-md-right">{{ __('Hoby') }}</label>
 
                             <div class="col-md-6">
-                                <input id="hope" type="text" class="form-control @error('hope') is-invalid @enderror" name="hope" value="{{ old('hope') }}" required autocomplete="hope" autofocus>
+                                <input id="hoby" type="text" class="form-control @error('hoby') is-invalid @enderror" name="hoby" value="{{ old('hoby') }}" required autocomplete="hoby" autofocus>
 
-                                @error('hope')
+                                @error('hoby')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="photo" class="col-md-4 col-form-label text-md-right">{{ __('Photo') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="photo" type="text" class="form-control @error('photo') is-invalid @enderror" name="photo" value="{{ old('photo') }}" required autocomplete="photo" autofocus>
+
+                                @error('photo')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
