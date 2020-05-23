@@ -19,10 +19,13 @@ Route::get('/', function () {
 
 Route::group(['prefix'=>'admin'],function(){
     Route::get('report/create',
-    'Admin\ReportController@add');
+    'Admin\ReportController@add')->middleware('auth');
 
     Route::get('profile/create',
-    'Admin\ProfileController@add');
+    'Admin\ProfileController@add')->middleware('auth');
     Route::get('profile/edit',
     'Admin\ProfileController@add');
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
