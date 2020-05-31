@@ -67,10 +67,18 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'group_name' => $data['group_name'],
-            'hoby' => $data['hoby'],
-            'photo' => $data['photo'],
+            'hobby' => $data['hobby'],
+            'photo' => Self::imageUpload($data['photo']),
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    private static function imageUpload($photo)
+    {
+        $request = app('request');
+        $path = $request->file('photo')->store('public/image');
+        return basename($path);
+    }
+
 }

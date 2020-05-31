@@ -40,12 +40,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="hoby" class="col-md-4 col-form-label text-md-right">{{ __('Hoby') }}</label>
+                            <label for="hobby" class="col-md-4 col-form-label text-md-right">{{ __('Hobby') }}</label>
 
                             <div class="col-md-6">
-                                <input id="hoby" type="text" class="form-control @error('hoby') is-invalid @enderror" name="hoby" value="{{ old('hoby') }}" required autocomplete="hoby" autofocus>
+                                <input id="hobby" type="text" class="form-control @error('hobby') is-invalid @enderror" name="hobby" value="{{ old('hobby') }}" required autocomplete="hobby" autofocus>
 
-                                @error('hoby')
+                                @error('hobby')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -57,8 +57,8 @@
                             <label for="photo" class="col-md-4 col-form-label text-md-right">{{ __('Photo') }}</label>
 
                             <div class="col-md-6">
-                                <input id="photo" type="text" class="form-control @error('photo') is-invalid @enderror" name="photo" value="{{ old('photo') }}" required autocomplete="photo" autofocus>
-
+                                <!-- <input id="photo" type="text" class="form-control @error('photo') is-invalid @enderror" name="photo" value="{{ old('photo') }}" required autocomplete="photo" autofocus> -->
+                                <input type="file" class="form-control-file" name="photo">
                                 @error('photo')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
