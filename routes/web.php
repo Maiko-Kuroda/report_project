@@ -28,8 +28,14 @@ Route::get('/', function () {
 // });
 Auth::routes();
 
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/user/edit', 'Admin\UserController@edit')->name('userEdit');
 Route::post('/user/update', 'Admin\UserController@update');
 Route::get('/user','Admin\UserController@yourAccount');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/report/edit', 'Admin\ReportController@edit')->name('reportEdit');

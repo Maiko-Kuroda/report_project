@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Auth;
 // ↓　Userモデルを使うための設定
 use App\User;
+// ↓画像のサイズ変換
+use \InterventionImage;
 
 
 class UserController extends Controller
@@ -14,6 +16,7 @@ class UserController extends Controller
    
     public function yourAccount(Request $request, User $user)
     {
+        // Auth::user(class名：your_account)によってyour_account.blade.phpにアカウント情報を渡す
         $your_account = Auth::user();
         return view('admin.user.your_account',['your_account' => $your_account]);
     }
@@ -33,13 +36,17 @@ class UserController extends Controller
         // $this->validate($request, User::$rules); ←使うなら$rulesを定義する必要
         $user=user::find($request->id);
         $account_form = $request->all();
-        if (isset($user_form['image'])) {
-            $path = $request->file('image')->store('public/image');
-            $user->image_path = basename($path);
-            unset($account_form['image']);
+        $file = $request->file('Photo');
+        $name = $file->getClientOriginalName();
+
+        if (isset($account_form['photo'])) {
+            $path = $request->file('photo')->store('public/image');
+            $user->photo = basename($path);
+            unset($account_form['photo']);
           } elseif (0 == strcmp($request->remove, 'true')) {
-            $user->image_path = null;
+            $user->photo = null;
           }
+          InterventionImage::make($file)->resize(1080, null, function ($constraint) {$constraint->aspectRatio();})->save(public_path('/images/' . $filename ) );;
         unset($account_form['_token']);
         // ↓　fillでフォームから受け取ったデータをユーザーに埋め込む（設定）し保存
         $user->fill($account_form)->save();

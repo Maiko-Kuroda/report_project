@@ -1,12 +1,12 @@
-@extends('layouts.user')
-@section('title', 'プロフィールの編集')
+@extends('layouts.account')
+@section('title', 'アカウント')
 
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-8 mx-auto">
             <h2>プロフィール</h2>
-            <form action="{{action('Admin\UserController@update')}}" method="post" enctype="multipart/form-data">
+            <form action="{{action('Admin\UserController@yourAccount')}}" method="get">
                 @if (count($errors) > 0)
                         <ul>
                             @foreach($errors->all() as $e)
@@ -14,42 +14,42 @@
                             @endforeach
                         </ul>
                     @endif
+
+                <div class="form-group row">
+                    <label class="col-md-2" for="title"></label>
+                    <div class="col-md-10">
+                       <img src="{{ asset('storage/image/' . $your_account->photo) }}" style="width: 40%" >
+                    </div>
+                </div>
                 <div class="form-group row">
                     <label class="col-md-2" for="name">名前</label>
                      <div class="col-md-10">
-                         <input type="text" class="form-control" name="name" value="{{ $your_account->name }}">
+                        <p>{{$your_account->name}}</p>
                      </div>
                 </div>
                 <div class="form-group row">
                      <label class="col-md-2" for="email">メール</label>
                      <div class="col-md-10">
-                         <input type="text" class="form-control" name="email" value="{{ $your_account->email }}">
+                         <p>{{$your_account->email}}</p>
                      </div>
                 </div>
                 <div class="from-group row">
                     <label class="col-md-2" for="group_name">所属グループ</label>
                      <div class="col-md-10">
-                         <input type="text" class="form-control" name="group_name" value="{{ $your_account->group_name }}">
+                     <p>{{$your_account->hobby}}</p>
                      </div>
                 </div>
                 <div class="from-group row">
                     <label class="col-md-2" for="hobby">趣味</label>
                      <div class="col-md-10">
-                         <input type="text" class="form-control" name="hobby" value="{{ $your_account->hobby }}">
+                     <p>{{$your_account->hobby}}</p>
                      </div>
                 </div>
                 <div class="form-group row">
-                        <label class="col-md-2" for="photo">画像</label>
-                        <div class="col-md-10">
-                            <input type="file" class="form-control-file" name="photo">
-                        </div>
-                </div>
-
-               <div class="form-group row">
                    <div class="col-md-10">
                        <input type="hidden" name="id" value="{{ $your_account->id }}">
                        {{ csrf_field() }}
-                       <input type="submit" class="btn btn-primary" value="更新">
+                       <input type="button" onclick="location.href='./user/edit'" value="編集する">
                    </div>
                </div>
             </form>

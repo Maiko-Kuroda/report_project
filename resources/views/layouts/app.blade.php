@@ -67,11 +67,6 @@
                                 </div>
                             </li>
                         @endguest
-                        <!-- ここにユーザー詳細のリンクを作る！ -->
-                        <li class="nav-item">
-                                <a class="nav-link" href="{{ route('userEdit') }}">user edit</a>
-                            </li>
-                        </li>
                     </ul>
                 </div>
             </div>
