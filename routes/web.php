@@ -39,3 +39,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/report/edit', 'Admin\ReportController@edit')->name('reportEdit');
+Route::get('/report/add', 'Admin\ReportController@add')->name('reportAdd');
+Route::post('/report/create', 'Admin\ReportController@create')->name('reportCreate');

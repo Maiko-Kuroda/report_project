@@ -16,7 +16,16 @@ class ReportController extends Controller
     //新規レポート入力画面
     public function create()
     {
-        //
+        // Varidationを行う
+    //   $this->validate($request, Report::$rules);
+    //   $report = new Report;
+    //   $form = $request->all();
+    //   unset($form['_token']);
+      // データベースに保存する
+    //   $report->fill($form);
+    //   $report->save();
+
+    //   return redirect('admin/report/create');
     }
 
     //新規レポート投稿画面

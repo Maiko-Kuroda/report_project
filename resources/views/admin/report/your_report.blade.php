@@ -20,29 +20,12 @@
                         <p>{{$your_report->name}}</p>
                      </div>
                 </div>
-                <div class="form-group row">
-                     <label class="col-md-2" for="email">メール</label>
-                     <div class="col-md-10">
-                         <p>{{$your_account->email}}</p>
-                     </div>
-                </div>
-                <div class="from-group row">
-                    <label class="col-md-2" for="group_name">所属グループ</label>
-                     <div class="col-md-10">
-                     <p>{{$your_account->hobby}}</p>
-                     </div>
-                </div>
-                <div class="from-group row">
-                    <label class="col-md-2" for="hobby">趣味</label>
-                     <div class="col-md-10">
-                     <p>{{$your_account->hobby}}</p>
-                     </div>
-                </div>
+               
                 <div class="form-group row">
                    <div class="col-md-10">
-                       <input type="hidden" name="id" value="{{ $your_account->id }}">
+                       <input type="hidden" name="id" value="{{ $your_report->id }}">
                        {{ csrf_field() }}
-                       <input type="button" onclick="location.href='./user/edit'" value="編集する">
+                       <input type="button" onclick="location.href='./report/edit'" value="＋">
                    </div>
                </div>
 
