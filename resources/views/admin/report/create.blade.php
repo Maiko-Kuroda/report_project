@@ -6,14 +6,14 @@
     <div class="row">
         <div class="col-md-8 mx-auto">
             <h2>今日、どうでした？</h2>
-            <form action="{{action('Admin\ReportController@add')}}" method="post" enctype="multipart/form-data">
+            <form action="{{action('Admin\ReportController@create')}}" method="post" enctype="multipart/form-data">
                 @if (count($errors) > 0)
                         <ul>
                             @foreach($errors->all() as $e)
                                 <li>{{ $e }}</li>
                             @endforeach
                         </ul>
-                    @endif
+                @endif
                
                 <div class="from-group row">
                     <label class="col-md-2" for="report">今日、どうでした？</label>
