@@ -15,6 +15,7 @@ class CreateReportsTable extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('user_id');  //の本文を保存するカラム
             $table->string('body');  //レポートの本文を保存するカラム
             $table->timestamps();
         });

@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-8 mx-auto">
             <h2>今日、どうでした？</h2>
-            <form action="{{action('Admin\ReportController@create')}}" method="post" enctype="multipart/form-data">
+            <form action="{{action('Admin\ReportController@create')}}" method="post" enctype="multipart/form-data" class="create-report-form">
                 @if (count($errors) > 0)
                         <ul>
                             @foreach($errors->all() as $e)
@@ -16,7 +16,6 @@
                 @endif
                
                 <div class="from-group row">
-                    <label class="col-md-2" for="report">今日、どうでした？</label>
                     <div class="col-md-20">
                         <textarea class="form-control" name="report" rows="20">{{ old('report') }}</textarea>
                     </div> 

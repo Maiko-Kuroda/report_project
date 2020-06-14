@@ -25,13 +25,13 @@ class ReportController extends Controller
     //新規レポート入力画面
     public function create(Request $request)
     {
-        dd($request);
       unset($form['_token']);
-      unset($form['image']);
-      // データベースに保存する
+    // データベースに保存する
+        //↓ログインしているユーザーの情報を登録情報に追加している。
+      $form['user_id'] = Auth::id();
       $report->fill($form);
       $report->save();
-
+        //更新ボタンを押したらreport/mypage（自分のレポート一覧みれるページ）にリダイレクトする・mypage新規で作る必要あり
       return redirect('admin/report/create');
     }
 
