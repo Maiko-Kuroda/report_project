@@ -32,10 +32,11 @@ Route::get('/user/edit', 'Admin\UserController@edit')->name('userEdit');
 Route::post('/user/update', 'Admin\UserController@update');
 Route::get('/user','Admin\UserController@yourAccount');
 
+//createで更新、addで新規登録画面、editで編集（1度投稿したものの）
 Route::get('/report/edit', 'Admin\ReportController@edit')->name('reportEdit');
-//createで更新、addで新規登録画面
 Route::get('/report/add', 'Admin\ReportController@add');
 Route::post('/report/create', 'Admin\ReportController@create');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();

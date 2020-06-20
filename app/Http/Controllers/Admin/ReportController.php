@@ -22,9 +22,11 @@ class ReportController extends Controller
         return view('admin.report.report',['report' => $report]);
     }
 */
-    //新規レポート入力画面
+    //新規レポート更新処理（post）
     public function create(Request $request)
     {
+      $report = new report;
+      $form = $request->all();  
       unset($form['_token']);
     // データベースに保存する
         //↓ログインしているユーザーの情報を登録情報に追加している。
@@ -32,10 +34,10 @@ class ReportController extends Controller
       $report->fill($form);
       $report->save();
         //更新ボタンを押したらreport/mypage（自分のレポート一覧みれるページ）にリダイレクトする・mypage新規で作る必要あり
-      return redirect('admin/report/create');
+      return redirect('admin/report/mypage');
     }
 
-    //新規レポート投稿画面
+    //新規レポート投稿画面（get）
     public function add(Request $request)
     {
         return view('admin.report.create');
