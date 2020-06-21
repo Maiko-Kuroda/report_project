@@ -27,6 +27,7 @@
                         <p>{{$report->name}}</p>
                      </div>
                 </div>
+                //
                 @endforeach
 
 <!--                
@@ -34,7 +35,7 @@
                    <div class="col-md-10">
                        <input type="hidden" name="id" value="{{ $report->id }}">
                        {{ csrf_field() }}
-                       <input type="button" onclick="location.href='./report/edit'" value="＋">
+                       <input type="button" onclick="location.href='./report/create'" value="＋">
                    </div>
                </div> -->
                 

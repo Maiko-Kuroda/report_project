@@ -62,6 +62,11 @@ class ReportController extends Controller
 
     }
 
+    //updateを作成　編集画面の更新処理
+
+
+
+    
     //レポート削除処理
     public function delete(Request $request)
     {
