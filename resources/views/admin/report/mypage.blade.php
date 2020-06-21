@@ -20,12 +20,15 @@
                     </div>
                 </div>
 
+                @foreach($reports as $report)
                 <div class="form-group row">
-                    <label class="col-md-2" for="report">レポート</label>
+                    <label class="col-md-2" for="report">今日のレポート</label>
                      <div class="col-md-10">
                         <p>{{$report->name}}</p>
                      </div>
                 </div>
+                @endforeach
+
 <!--                
                 <div class="form-group row">
                    <div class="col-md-10">

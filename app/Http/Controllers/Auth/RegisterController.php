@@ -76,8 +76,6 @@ class RegisterController extends Controller
     private static function imageUpload($photo)
     {
         $request = app('request');
-        dd($photo);
-
         $path = $request->file('photo')->store('public/image');
         return basename($path);
     }

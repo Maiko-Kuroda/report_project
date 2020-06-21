@@ -34,7 +34,7 @@ class ReportController extends Controller
       $report->fill($form);
       $report->save();
         //更新ボタンを押したらreport/mypage（自分のレポート一覧みれるページ）にリダイレクトする・mypage新規で作る必要あり
-      return redirect('admin/report/mypage');
+      return redirect('report/mypage');
     }
 
     //新規レポート投稿画面（get）
@@ -43,10 +43,20 @@ class ReportController extends Controller
         return view('admin.report.create');
     }
 
+    public function showMypage(Request $request)
+    {
+        //Auth::userで登録されているユーザー情報全て取ってくる（アドレスとかも）
+        $your_account = Auth::user();
+        //↓たくさんのユーザーIDに紐づいているレポートの中から、自分のIDのものを引っ張ってくる
+        $reports = Report::find('user_id', Auth::id())->get();
+        return view('admin.report.mypage',['your_account' => $your_account,'reports' => $reports]);
+
+    }
+
+
     //レポート編集画面
     public function edit(Request $request)
     {
-        $user = Auth::user();
         $report = Report::find($request->id);
         return view('admin.report.edit',['report' => $report]);
 

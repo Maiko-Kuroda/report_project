@@ -36,7 +36,7 @@ Route::get('/user','Admin\UserController@yourAccount');
 Route::get('/report/edit', 'Admin\ReportController@edit')->name('reportEdit');
 Route::get('/report/add', 'Admin\ReportController@add');
 Route::post('/report/create', 'Admin\ReportController@create');
-
+Route::get('/report/mypage', 'Admin\ReportController@showMypage');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
