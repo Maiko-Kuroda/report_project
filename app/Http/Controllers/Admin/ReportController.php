@@ -14,7 +14,7 @@ class ReportController extends Controller
         //
     }
 
-/*
+    /*
      public function yourReport(Request $request, report $report)
      {
         // Auth::report(class名：report)によってreport.blade.phpにレポート内容を渡す
@@ -25,16 +25,16 @@ class ReportController extends Controller
     //新規レポート更新処理（post）
     public function create(Request $request)
     {
-      $report = new report;
-      $form = $request->all();  
-      unset($form['_token']);
-    // データベースに保存する
+        $report = new report;
+        $form = $request->all();
+        unset($form['_token']);
+        // データベースに保存する
         //↓ログインしているユーザーの情報を登録情報に追加している。
-      $form['user_id'] = Auth::id();
-      $report->fill($form);
-      $report->save();
+        $form['user_id'] = Auth::id();
+        $report->fill($form);
+        $report->save();
         //更新ボタンを押したらreport/mypage（自分のレポート一覧みれるページ）にリダイレクトする・mypage新規で作る必要あり
-      return redirect('report/mypage');
+        return redirect('report/mypage');
     }
 
     //新規レポート投稿画面（get）
@@ -42,31 +42,25 @@ class ReportController extends Controller
     {
         return view('admin.report.create');
     }
-
+    
     public function showMypage(Request $request)
     {
         //Auth::userで登録されているユーザー情報全て取ってくる（アドレスとかも）
         $your_account = Auth::user();
         //↓たくさんのユーザーIDに紐づいているレポートの中から、自分のIDのものを引っ張ってくる
-        $reports = Report::find('user_id', Auth::id())->get();
-        return view('admin.report.mypage',['your_account' => $your_account,'reports' => $reports]);
-
+        $reports = Report::where('user_id', Auth::id())->get();
+        return view('admin.report.mypage', ['your_account' => $your_account, 'reports' => $reports]);
     }
-
-
+    
+    
     //レポート編集画面
     public function edit(Request $request)
     {
         $report = Report::find($request->id);
-        return view('admin.report.edit',['report' => $report]);
-
+        return view('admin.report.edit', ['report' => $report]);
     }
-
-    //updateを作成　編集画面の更新処理
-
-
-
     
+
     //レポート削除処理
     public function delete(Request $request)
     {
@@ -75,5 +69,5 @@ class ReportController extends Controller
         $report->delete();
         return redirect('admin/report/');
     }
-    
+
 }
