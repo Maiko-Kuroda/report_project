@@ -52,6 +52,20 @@ class ReportController extends Controller
         return view('admin.report.mypage', ['your_account' => $your_account, 'reports' => $reports]);
     }
     
+    public function update(Request $request)
+    {
+        $this->validate($request, Reports::$request);
+        $report = Report::find($request->id);
+
+        unset($report_form['_token']);
+        unset($report_form['remove']);
+        $report->fill($report_form)->save();
+
+        $history = new History;
+        $history->new_id = $report->id;
+
+
+    }
     
     //レポート編集画面
     public function edit(Request $request)
@@ -59,6 +73,8 @@ class ReportController extends Controller
         $report = Report::find($request->id);
         return view('admin.report.edit', ['report' => $report]);
     }
+
+
     
 
     //レポート削除処理

@@ -21,9 +21,10 @@
                 
                 @foreach($reports as $report)
                 <div class="form-group row">
-                    <label class="col-md-2" for="report">今日のレポート</label>
+                    <label class="col-md-2" for="report">●</label>
                     <div class="col-md-10">
                         <p>{{$report->report}}</p>
+                        <!-- ↓編集画面に移動 -->
                         <a href="/report/edit?id={{$report->id}}" class="btn btn-secondary">編集</a>
                     </div>
                 </div>
