@@ -1,19 +1,31 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 use App\Report;
 class ReportController extends Controller
 {
-    // 一覧表示
-    public function index()
+    // レポート一覧表示
+    public function index(Request $request)
     {
-        //
-    }
-
+        //ユーザーモデルでユーザー
+        //$requestのcond_userの値を$cond_userに代入
+        $cond_user = $request->cond_user;
+        $posts;
+        if ($cond_user != '') {
+            // 検索されたら検索結果を取得する
+            $posts = Report::whereHas('user', function ($query) use ($cond_user) {
+                // slugをkeywordで検索
+                $query->where(‘name’, ‘like’, ‘%’.$cond_user.‘%’);
+            })->get();
+        } else {
+            // それ以外はすべてのレポートを取得する
+            $posts = Report::all();
+        }
+        return view('admin.report.index', ['posts' => $posts, 'cond_user' => $cond_user]);
+     }
+        //myPageでは自分のidで検索する→$reports = Report::where('user_id', Auth::id())->get();
     /*
      public function yourReport(Request $request, report $report)
      {
@@ -36,13 +48,11 @@ class ReportController extends Controller
         //更新ボタンを押したらreport/mypage（自分のレポート一覧みれるページ）にリダイレクトする・mypage新規で作る必要あり
         return redirect('report/mypage');
     }
-
     //新規レポート投稿画面（get）
     public function add(Request $request)
     {
         return view('admin.report.create');
     }
-    
     public function showMypage(Request $request)
     {
         //Auth::userで登録されているユーザー情報全て取ってくる（アドレスとかも）
@@ -51,32 +61,30 @@ class ReportController extends Controller
         $reports = Report::where('user_id', Auth::id())->get();
         return view('admin.report.mypage', ['your_account' => $your_account, 'reports' => $reports]);
     }
-    
-    public function update(Request $request)
-    {
-        $this->validate($request, Reports::$request);
-        $report = Report::find($request->id);
-
-        unset($report_form['_token']);
-        unset($report_form['remove']);
-        $report->fill($report_form)->save();
-
-        $history = new History;
-        $history->new_id = $report->id;
-
-
-    }
-    
     //レポート編集画面
     public function edit(Request $request)
     {
         $report = Report::find($request->id);
+        dd($report);
         return view('admin.report.edit', ['report' => $report]);
     }
-
-
-    
-
+    //レポート更新処理
+    //$requestには、postで受け取った情報（ユーザーが編集したレポート）が入る
+    public function update(Request $request)
+    {
+       //①findメソッドで、指定されたid（$requestのidプロパティ）に該当するレコードを取得
+       //して$reportに代入（編集前のもの）
+        $report = Report::find($request->id);
+        //②編集前の$report＝編集前のもの。これを編集後の内容が代入されている$requestの内容に更新
+        //③$requestから各プロパティを呼び出し、$articleの各プロパティとして代入する。
+        //（上書き保存のイメージ。）
+        //④モデルのsaveメソッドを実行し、内容をデータベースに書き込む。
+        $report_form =$request->all();
+        unset($report_form['_token']);
+        unset($report_form['report']);
+        $report->fill($report_form)->save();
+        return redirect('admin/report/mypage');
+    }
     //レポート削除処理
     public function delete(Request $request)
     {
@@ -85,5 +93,4 @@ class ReportController extends Controller
         $report->delete();
         return redirect('admin/report/');
     }
-
 }

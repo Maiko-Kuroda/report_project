@@ -36,4 +36,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //ユーザー1人に対して、レポートは複数紐づいているので、「reports」(複数形)
+    public function reports()
+    {
+        return $this->hasMany('App\Report');
+    }
+
+
 }

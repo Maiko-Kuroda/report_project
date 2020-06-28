@@ -11,11 +11,12 @@ class Report extends Model
     public static $rules = array(
         'body' => 'required',
         'user_id' => 'required',
+
         );
         
-        //未作成
-        public function histories()
+        //これでレポートを引っ張るときにユーザーIDと一致するものを
+        public function user()
         {
-            return $this->hasMany('App\History');
+            return $this->belongsTo('App\User');
         }
 }

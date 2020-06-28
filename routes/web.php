@@ -34,9 +34,10 @@ Route::get('/user','Admin\UserController@yourAccount');
 
 //createで更新、addで新規登録画面、editで編集（1度投稿したものの）
 Route::get('/report/edit', 'Admin\ReportController@edit')->name('reportEdit');
+Route::post('/report/update','Admin\ReportController@update');
 Route::get('/report/add', 'Admin\ReportController@add');
 Route::post('/report/create', 'Admin\ReportController@create');
 Route::get('/report/mypage', 'Admin\ReportController@showMypage');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('report', 'Admin\ReportController@index');
 Auth::routes();
