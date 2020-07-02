@@ -59,7 +59,7 @@ class ReportController extends Controller
         $your_account = Auth::user();
         //↓たくさんのユーザーIDに紐づいているレポートの中から、自分のIDのものを引っ張ってくる
         $reports = Report::where('user_id', Auth::id())->get();
-        return view('admin.report.mypage', ['your_account' => $your_account, 'reports' => $reports]);
+        return view('admin.report.myPage', ['your_account' => $your_account, 'reports' => $reports]);
     }
     //レポート編集画面
     public function edit(Request $request)

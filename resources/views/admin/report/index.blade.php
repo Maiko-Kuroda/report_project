@@ -41,7 +41,6 @@
                                     <th>{{ $report->id }}</th>
                                     <td>{{ $report->user->name }}</td>
                                     <td>{{ $report->report }}</td>
-                                   
                                 </tr>
                             @endforeach
                         </tbody>
