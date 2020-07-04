@@ -58,6 +58,9 @@ class ReportController extends Controller
         $form['user_id'] = Auth::id();
         $report->fill($form);
         $report->save();
+
+        
+
         //更新ボタンを押したらreport/mypage（自分のレポート一覧みれるページ）にリダイレクトする・mypage新規で作る必要あり
         return redirect('report/mypage');
     }
@@ -70,8 +73,20 @@ class ReportController extends Controller
     {
         //Auth::userで登録されているユーザー情報全て取ってくる（アドレスとかも）
         $your_account = Auth::user();
+        //日付けを取ってくる
+        $date = date_create($request->date);
+        $date = date_format($date , 'Y-m-d');
+        $obj = Report::where('created_at' , 'like' , $date . '%')->get();
+        
         //↓たくさんのユーザーIDに紐づいているレポートの中から、自分のIDのものを引っ張ってくる
         $reports = Report::where('user_id', Auth::id())->get();
+        //↓Y-m-d表記にViewで表示させたい
+        foreach($reports as &$report){
+            $date = date_create($report->date);
+            $date = date_format($date , 'Y-m-d');
+            $report->date = $date; //取得したレポートのデータを、Y-m-dに変換
+        }
+
         return view('admin.report.myPage', ['your_account' => $your_account, 'reports' => $reports]);
     }
     //レポート編集画面

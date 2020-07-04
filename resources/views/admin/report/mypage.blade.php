@@ -15,7 +15,7 @@
                 @endif
                 <div class="form-group row">
                     <div class="col-md-10">
-                        <img src="{{ asset('storage/image/' . $your_account->photo) }}" style="width: 40%">
+                    <img src="{{ asset('storage/image/' . $your_account->photo) }}" style="width: 40%">
                     </div>
                 </div>
                 
