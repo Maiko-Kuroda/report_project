@@ -32,6 +32,7 @@
                         <thead>
                             <tr>
                                 <th width="10%">ID</th>
+                                <th width="10%">更新日時</th>
                                 <th width="50%">メンバー</th>
                             </tr>
                         </thead>
@@ -39,6 +40,7 @@
                             @foreach($posts as $report)
                                 <tr>
                                     <th>{{ $report->id }}</th>
+                                    <th>{{ $report->date }}</th>
                                     <td>{{ $report->user->name }}</td>
                                     <td>{{ $report->report }}</td>
                                 </tr>

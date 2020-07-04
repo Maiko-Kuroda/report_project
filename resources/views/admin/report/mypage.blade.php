@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 mx-auto">
-            <h2>レポート一覧</h2>
+            <h2>my page</h2>
             <form action="{{action('Admin\ReportController@add')}}" method="get">
                 @if (count($errors) > 0)
                 <ul>
@@ -23,6 +23,7 @@
                 <div class="form-group row">
                     <label class="col-md-2" for="report">●</label>
                     <div class="col-md-10">
+                        <p>{{$report->date}}</p>
                         <p>{{$report->report}}</p>
                         <!-- ↓編集画面に移動 -->
                         <a href="/report/edit?id={{$report->id}}" class="btn btn-secondary">編集</a>

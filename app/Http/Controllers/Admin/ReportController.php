@@ -13,6 +13,11 @@ class ReportController extends Controller
         //$requestのcond_userの値を$cond_userに代入
         $cond_user = $request->cond_user;
         $posts;
+        $date = date_create($request->date);
+        $date = date_format($date , 'Y-m-d');
+        $obj = Report::where('created_at' , 'like' , $date . '%')->get();
+        
+         
         if ($cond_user != '') {
             // 検索されたら検索結果を取得する
             $posts = Report::whereHas('user', function ($query) use ($cond_user) {
@@ -23,6 +28,14 @@ class ReportController extends Controller
             // それ以外はすべてのレポートを取得する
             $posts = Report::all();
         }
+        $posts = $posts->sortByDesc('date');
+        //↓Y-m-d表記にViewで表示させたい
+        foreach($posts as &$post){
+            $date = date_create($post->date);
+            $date = date_format($date , 'Y-m-d');
+            $post->date = $date; //取得したレポートのデータを、Y-m-dに変換
+        }
+
         return view('admin.report.index', ['posts' => $posts, 'cond_user' => $cond_user]);
      }
         //myPageでは自分のidで検索する→$reports = Report::where('user_id', Auth::id())->get();
@@ -65,7 +78,6 @@ class ReportController extends Controller
     public function edit(Request $request)
     {
         $report = Report::find($request->id);
-        dd($report);
         return view('admin.report.edit', ['report' => $report]);
     }
     //レポート更新処理

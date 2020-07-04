@@ -39,5 +39,7 @@ Route::get('/report/add', 'Admin\ReportController@add');
 Route::post('/report/create', 'Admin\ReportController@create');
 Route::get('/report/mypage', 'Admin\ReportController@showMypage');
 
+// Route::get('/{message}', 'UserController@index');
+
 Route::get('report', 'Admin\ReportController@index');
 Auth::routes();
