@@ -13,29 +13,22 @@ class ReportController extends Controller
         //$requestのcond_userの値を$cond_userに代入
         $cond_user = $request->cond_user;
         $posts;
-        $date = date_create($request->date);
-        $date = date_format($date , 'Y-m-d');
-        $obj = Report::where('created_at' , 'like' , $date . '%')->get();
-        
-         
         if ($cond_user != '') {
             // 検索されたら検索結果を取得する
             $posts = Report::whereHas('user', function ($query) use ($cond_user) {
                 // slugをkeywordで検索
-                $query->where(‘name’, ‘like’, ‘%’.$cond_user.‘%’);
-            })->get();
+                $query->where('name', 'like', '%' . $cond_user . '%');
+            })->orderBy('updated_at','desc')->get();
         } else {
             // それ以外はすべてのレポートを取得する
-            $posts = Report::all();
+            $posts = Report::orderBy('updated_at', 'desc')->get();
         }
-        $posts = $posts->sortByDesc('date');
         //↓Y-m-d表記にViewで表示させたい
-        foreach($posts as &$post){
-            $date = date_create($post->date);
-            $date = date_format($date , 'Y-m-d');
-            $post->date = $date; //取得したレポートのデータを、Y-m-dに変換
-        }
-
+        // foreach($posts as &$post){
+        //     // $date = date_create($post->created_at);
+        //     $date = date_format($post->update_at, 'Y-m-d');
+        //     $post->date = $date; //取得したレポートのデータを、Y-m-dに変換
+        // }
         return view('admin.report.index', ['posts' => $posts, 'cond_user' => $cond_user]);
      }
         //myPageでは自分のidで検索する→$reports = Report::where('user_id', Auth::id())->get();
@@ -58,9 +51,6 @@ class ReportController extends Controller
         $form['user_id'] = Auth::id();
         $report->fill($form);
         $report->save();
-
-        
-
         //更新ボタンを押したらreport/mypage（自分のレポート一覧みれるページ）にリダイレクトする・mypage新規で作る必要あり
         return redirect('report/mypage');
     }
@@ -74,19 +64,18 @@ class ReportController extends Controller
         //Auth::userで登録されているユーザー情報全て取ってくる（アドレスとかも）
         $your_account = Auth::user();
         //日付けを取ってくる
-        $date = date_create($request->date);
-        $date = date_format($date , 'Y-m-d');
-        $obj = Report::where('created_at' , 'like' , $date . '%')->get();
-        
-        //↓たくさんのユーザーIDに紐づいているレポートの中から、自分のIDのものを引っ張ってくる
-        $reports = Report::where('user_id', Auth::id())->get();
-        //↓Y-m-d表記にViewで表示させたい
-        foreach($reports as &$report){
-            $date = date_create($report->date);
-            $date = date_format($date , 'Y-m-d');
-            $report->date = $date; //取得したレポートのデータを、Y-m-dに変換
-        }
-
+        // $date = date_create($request->date);
+        // $date = date_format($date , 'Y-m-d');
+        // $obj = Report::where('created_at' , 'like' , $date . '%')->get();
+        // //↓たくさんのユーザーIDに紐づいているレポートの中から、自分のIDのものを引っ張ってくる
+        // $reports = Report::where('user_id', Auth::id())->get();
+        // //↓Y-m-d表記にViewで表示させたい
+        // foreach($reports as &$report){
+        //     $date = date_create($report->date);
+        //     $date = date_format($date , 'Y-m-d');
+        //     $report->date = $date; //取得したレポートのデータを、Y-m-dに変換
+        // }
+        $reports = Report::where('user_id', Auth::id())->orderBy('updated_at', 'desc')->get();
         return view('admin.report.myPage', ['your_account' => $your_account, 'reports' => $reports]);
     }
     //レポート編集画面
