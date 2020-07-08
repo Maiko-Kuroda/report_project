@@ -23,7 +23,7 @@
                 <div class="form-group row">
                     <label class="col-md-2" for="report">●</label>
                     <div class="col-md-10">
-                        <p>{{$date_format(date_create($report->update_at),'Y-m-d')}}</p>
+                        <p>{{date_format(date_create($report->update_at), 'Y-m-d')}}</p>
                         <p>{{$report->report}}</p>
                         <!-- ↓編集画面に移動 -->
                         <a href="/report/edit?id={{$report->id}}" class="btn btn-secondary">編集</a>

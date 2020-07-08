@@ -40,7 +40,7 @@
                             @foreach($posts as $report)
                                 <tr>
                                     <th>{{ $report->id }}</th>
-                                    <th>{{ $date_format($report->update_at),'Y-m-d' }}</th>
+                                    <th>{{ date_format(date_create($report->update_at), 'Y-m-d') }}</th>
                                     <td>{{ $report->user->name }}</td>
                                     <td>{{ $report->report }}</td>
                                 </tr>
