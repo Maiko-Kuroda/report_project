@@ -52,11 +52,16 @@ class ReportController extends Controller
         $report->fill($form);
         $report->save();
         //更新ボタンを押したらreport/mypage（自分のレポート一覧みれるページ）にリダイレクトする・mypage新規で作る必要あり
-        return redirect('report/mypage');
+        //↓　フォームに入力された内容にDBに保存するアクション
+        $toUrl = $request->session()->get("fromUrl");
+        $request->session()->forget("formUrl");
+        return redirect($toUrl);
+
     }
     //新規レポート投稿画面（get）
     public function add(Request $request)
     {
+        $request->session()->put("fromUrl", url()->previous());
         return view('admin.report.create');
     }
     public function showMypage(Request $request)

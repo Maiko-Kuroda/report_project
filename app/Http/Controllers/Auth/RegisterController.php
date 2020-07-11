@@ -64,18 +64,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // dd($data);
         return User::create([
             'name' => $data['name'],
             'group_name' => $data['group_name'],
             'hobby' => $data['hobby'],
-            'photo' => Self::imageUpload($data['photo']),
+            'photo' => Self::imageUpload(),
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
     }
-    private static function imageUpload($photo)
+    private static function imageUpload()
     {
         $request = app('request');
+        // dd($request);
         $path = $request->file('photo')->store('public/image');
         return basename($path);
     }
