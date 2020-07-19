@@ -9,6 +9,8 @@ use Auth;
 use App\User;
 // ↓画像のサイズ変換
 use \InterventionImage;
+use App\Follow;
+use App\Report;
 
 
 class UserController extends Controller
@@ -59,7 +61,13 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    
+    public function index(User $user){
+        $all_users = $user->getAllUsers(auth()->user()->id);
+
+        return view('admin.user.user_index',[
+            'all_users' =>$all_users
+        ]);
+    }
 
 }
 

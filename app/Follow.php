@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Follow extends Model
 {
     
-
-    public function getAllUsers(Int $user_id)
-    {
-        return $this->Where('id', '<>', $user_id)->paginate(10);
-    }
-
+    protected $guarded = array('id');
+    public static $rules = array(
+        'from' => 'required',
+        'to' => 'required',
+        
+        );
 
 }

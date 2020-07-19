@@ -43,5 +43,21 @@ class User extends Authenticatable
         return $this->hasMany('App\Report');
     }
 
+    //フォローしているユーザー一覧取得
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'from', 'to')->withTimestamps();
+    }
+
+    //フォローされているユーザー一覧取得
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'from', 'to')->withTimestamps();
+    }
+
+    public function getAllUsers(Int $user_id)
+    {
+        return $this->Where('id', '<>', $user_id)->paginate(10);
+    }
 
 }
