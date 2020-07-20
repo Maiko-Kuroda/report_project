@@ -32,7 +32,10 @@ Route::get('/home', 'Admin\ReportController@index')->name('home');
 Route::get('/user/edit', 'Admin\UserController@edit')->name('userEdit');
 Route::post('/user/update', 'Admin\UserController@update');
 Route::get('/user','Admin\UserController@yourAccount');
-Route::get('/user/index','Admin\UserController@index');
+Route::get('/user/index','Admin\UserController@index')->middleware('auth');
+
+Route::post('/user/follow', 'Admin\FollowController@follow');
+Route::post('/user/unfollow', 'Admin\FollowController@unfollow');
 
 //createで更新、addで新規登録画面、editで編集（1度投稿したものの）
 Route::get('/report/edit', 'Admin\ReportController@edit')->name('reportEdit');

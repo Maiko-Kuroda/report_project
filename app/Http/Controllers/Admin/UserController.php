@@ -62,8 +62,14 @@ class UserController extends Controller
     }
 
     public function index(User $user){
-        $all_users = $user->getAllUsers(auth()->user()->id);
-
+        //↓チェックは、自分がログインしているかどうかを毎回確認する処理。今回はいらない
+        //web.phpにミドルウェア、、つけた。
+        // if(Auth::check()){
+            $all_users = $user->getAllUsers(auth()->user()->id);
+        // }else{
+        //     $all_users = User::all();
+        // }
+       
         return view('admin.user.user_index',[
             'all_users' =>$all_users
         ]);
