@@ -16,40 +16,80 @@
                     @endif
 
                 <div class="form-group row">
-                    <label class="col-md-2" for="title"></label>
+        
                     <div class="col-md-10">
                        <img src="{{ asset('storage/image/' . $your_account->photo) }}" style="width: 40%" >
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label class="col-md-2" for="name">名前</label>
-                     <div class="col-md-10">
-                        <p>{{$your_account->name}}</p>
-                     </div>
-                </div>
-                <div class="form-group row">
-                     <label class="col-md-2" for="email">メール</label>
-                     <div class="col-md-10">
-                         <p>{{$your_account->email}}</p>
-                     </div>
-                </div>
-                <div class="from-group row">
-                    <label class="col-md-2" for="group_name">所属グループ</label>
-                     <div class="col-md-10">
-                     <p>{{$your_account->hobby}}</p>
-                     </div>
-                </div>
-                <div class="from-group row">
-                    <label class="col-md-2" for="hobby">趣味</label>
-                     <div class="col-md-10">
-                     <p>{{$your_account->hobby}}</p>
-                     </div>
-                </div>
+                <div class="py0">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="card">
+                                    <div class="card-header" > name </div>
+                                        <div class="card-body">
+                                            <blockquote class="blockquote mb-0">
+                                                <p>{{$your_account->name}}</p>
+                                            </blockquote>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="py0">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="card">
+                                    <div class="card-header" > mail </div>
+                                        <div class="card-body">
+                                            <blockquote class="blockquote mb-0">
+                                                <p>{{$your_account->email}}</p>
+                                            </blockquote>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="py0">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="card">
+                                    <div class="card-header" > group </div>
+                                        <div class="card-body">
+                                            <blockquote class="blockquote mb-0">
+                                                <p>{{$your_account->group_name}}</p>
+                                            </blockquote>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="py0">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="card">
+                                    <div class="card-header" > hobby </div>
+                                        <div class="card-body">
+                                            <blockquote class="blockquote mb-0">
+                                                <p>{{$your_account->hobby}}</p>
+                                            </blockquote>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 <div class="form-group row">
                    <div class="col-md-10">
                        <input type="hidden" name="id" value="{{ $your_account->id }}">
                        {{ csrf_field() }}
-                       <input type="button" onclick="location.href='./user/edit'" value="編集する">
+                       <input type="button" class="button" onclick="location.href='./user/edit'" value="編集する">
                    </div>
                </div>
             </form>

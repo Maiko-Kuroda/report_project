@@ -1,37 +1,46 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Follow;
+use Auth;
 class FollowController extends Controller
 {
     //フォローする
-    public function follow(User $user)
+    public function follow(Request $request)
     {
-        $follower = auth()->user();
+        $form = $request->all();
+        $userId = $form['user_id'];
         // フォローしているか
-        $is_following = $follower->isFollowing($user->id);
-        if(!$is_following) {
-            // フォローしていなければフォローする
-            $follower->follow($user->id);
-            return back();
+        $isFollowing = Self::isFollowing($userId);
+        if ($isFollowing == false) {
+            $follow = Follow::find($userId);
+            $follow = new Follow();
+            $follow->fill(['from' => Auth::id(),'to' => $userId]);
+            $follow->save();
         }
+        return response()->json(['isFollow' => true]);
     }
-
     //フォローを外す
-    public function unfollow(User $user)
+    public function unfollow(Request $request)
     {
-        $follower = auth()->user();
+        $form = $request->all();
+        $userId = $form['user_id'];
         // フォローしているか
-        $is_following = $follower->isFollowing($user->id);
-        if($is_following) {
-            // フォローしていればフォローを解除する
-            $follower->unfollow($user->id);
-            return back();
+        $isFollowing = Self::isFollowing($userId);
+        if ($isFollowing == false) {
+            Follow::where('from', Auth::id())->where('to', $userId)->delete();
         }
+        return response()->json(['isFollow' => false]);
     }
-
-    
+    // フォローしているか
+    private static function isFollowing(Int $userId)
+    {
+        return (bool) Follow::where('from', $userId)->where('to', Auth::id())->first(['id']);
+    }
+    // フォローされているか
+    public function isFollowed(Int $userId)
+    {
+        return (bool) Follow::where('from', Auth::id())->where('to', $userId)->first(['id']);
+    }
 }

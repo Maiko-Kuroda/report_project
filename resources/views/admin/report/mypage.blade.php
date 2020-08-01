@@ -19,6 +19,8 @@
                     </div>
                 </div>
                 
+
+
                 @foreach($reports as $report)
                 <div class="form-group row">
                     <label class="col-md-2" for="report">●</label>
@@ -31,6 +33,7 @@
                 </div>
                 
                 @endforeach
+
                 {{-- 新規登録 --}}
                 <div class="form-group row">
                     <div class="col-md-10">
@@ -38,6 +41,7 @@
                         <a href="/report/add" class="btn btn-secondary">＋</a>
                     </div>
                 </div>
+               
             </form>
         </div>
     </div>

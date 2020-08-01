@@ -656,7 +656,7 @@ pre code {
 }
 
 .row {
-    display: flex;
+    /* display: flex; */
     flex-wrap: wrap;
     margin-right: -15px;
     margin-left: -15px;
@@ -1236,6 +1236,7 @@ pre code {
     .col-md-5 {
         flex: 0 0 41.6666666667%;
         max-width: 41.6666666667%;
+        margin-bottom: 1rem;
     }
 
     .col-md-6 {
@@ -1811,7 +1812,7 @@ pre code {
 .table {
     width: 100%;
     margin-bottom: 1rem;
-    color: #212529;
+    color: #25292c;
 }
 
 .table th,
@@ -2316,6 +2317,10 @@ textarea.form-control {
     margin-bottom: 1rem;
 }
 
+.form-group2 {
+    margin-bottom: 2rem;
+}
+
 .form-text {
     display: block;
     margin-top: 0.25rem;
@@ -2717,7 +2722,8 @@ fieldset:disabled a.btn {
 .btn-primary {
     color: #fff;
     background-color: #3490dc;
-    border-color: #3490dc;
+    border-color: #64a3d6;
+    margin-bottom: 2rem;
 }
 
 .btn-primary:hover {

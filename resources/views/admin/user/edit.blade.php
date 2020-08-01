@@ -26,19 +26,19 @@
                          <input type="text" class="form-control" name="email" value="{{ $your_account->email }}">
                      </div>
                 </div>
-                <div class="from-group row">
+                <div class="form-group row">
                     <label class="col-md-2" for="group_name">所属グループ</label>
                      <div class="col-md-10">
                          <input type="text" class="form-control" name="group_name" value="{{ $your_account->group_name }}">
                      </div>
                 </div>
-                <div class="from-group row">
+                <div class="form-group row">
                     <label class="col-md-2" for="hobby">趣味</label>
                      <div class="col-md-10">
                          <input type="text" class="form-control" name="hobby" value="{{ $your_account->hobby }}">
                      </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group2 row">
                         <label class="col-md-2" for="photo">画像</label>
                         <div class="col-md-10">
                             <input type="file" class="form-control-file" name="photo">
