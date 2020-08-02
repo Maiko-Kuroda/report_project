@@ -18,9 +18,6 @@
                     <img src="{{ asset('storage/image/' . $your_account->photo) }}" style="width: 40%">
                     </div>
                 </div>
-                
-
-
                 @foreach($reports as $report)
                 <div class="form-group row">
                     <label class="col-md-2" for="report">●</label>
@@ -28,7 +25,7 @@
                         <p>{{date_format(date_create($report->update_at), 'Y-m-d')}}</p>
                         <p>{{$report->report}}</p>
                         <!-- ↓編集画面に移動 -->
-                        <a href="/report/edit?id={{$report->id}}" class="btn btn-secondary">編集</a>
+                        <a href="/report/edit?id={{$report->id}}" class="button">編集</a>
                     </div>
                 </div>
                 

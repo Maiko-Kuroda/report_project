@@ -18,68 +18,60 @@
                 <div class="form-group row">
         
                     <div class="col-md-10">
-                       <img src="{{ asset('storage/image/' . $your_account->photo) }}" style="width: 40%" >
+                       <img src="{{ asset('storage/image/' . $your_account->photo) }}" style="width: 50%" >
                     </div>
                 </div>
                 <div class="py0">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="card">
-                                    <div class="card-header" > name </div>
-                                        <div class="card-body">
-                                            <blockquote class="blockquote mb-0">
-                                                <p>{{$your_account->name}}</p>
-                                            </blockquote>
-                                        </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="card">
+                                <div class="card-header" > name </div>
+                                    <div class="card-body">
+                                        <blockquote class="blockquote mb-0">
+                                            <p>{{$your_account->name}}</p>
+                                        </blockquote>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="py0">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="card">
-                                    <div class="card-header" > mail </div>
-                                        <div class="card-body">
-                                            <blockquote class="blockquote mb-0">
-                                                <p>{{$your_account->email}}</p>
-                                            </blockquote>
-                                        </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="card">
+                                <div class="card-header" > mail </div>
+                                    <div class="card-body">
+                                        <blockquote class="blockquote mb-0">
+                                            <p>{{$your_account->email}}</p>
+                                        </blockquote>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="py0">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="card">
-                                    <div class="card-header" > group </div>
-                                        <div class="card-body">
-                                            <blockquote class="blockquote mb-0">
-                                                <p>{{$your_account->group_name}}</p>
-                                            </blockquote>
-                                        </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="card">
+                                <div class="card-header" > group </div>
+                                    <div class="card-body">
+                                        <blockquote class="blockquote mb-0">
+                                            <p>{{$your_account->group_name}}</p>
+                                        </blockquote>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="py0">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="card">
-                                    <div class="card-header" > hobby </div>
-                                        <div class="card-body">
-                                            <blockquote class="blockquote mb-0">
-                                                <p>{{$your_account->hobby}}</p>
-                                            </blockquote>
-                                        </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="card">
+                                <div class="card-header" > hobby </div>
+                                    <div class="card-body">
+                                        <blockquote class="blockquote mb-0">
+                                            <p>{{$your_account->hobby}}</p>
+                                        </blockquote>
                                     </div>
                                 </div>
                             </div>

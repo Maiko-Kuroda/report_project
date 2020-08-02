@@ -23,7 +23,7 @@
                 <div class="form-group row">
                     <div class="col-md-10">
                         {{ csrf_field() }}
-                        <input type="submit" class="btn btn-primary" value="投稿" class="click-form">
+                        <input type="submit" class="button-2" value="投稿" class="click-form">
                     </div>
                 </div>
             </form>
