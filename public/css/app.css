@@ -97,8 +97,8 @@ h6 {
 }
 
 p {
-    margin-top: 0;
-    margin-bottom: 1rem;
+    margin-top: 1;
+    margin-bottom: 0rem;
 }
 
 abbr[title],
@@ -171,7 +171,7 @@ sup {
 }
 
 a {
-    color: #3490dc;
+    color: #020826;
     text-decoration: none;
     background-color: transparent;
 }
@@ -1957,14 +1957,15 @@ pre code {
 .table-warning,
 .table-warning>th,
 .table-warning>td {
-    background-color: #fffacc;
+    background-color: #eaddcf;
+    border-color: #020826;
 }
 
 .table-warning th,
 .table-warning td,
 .table-warning thead th,
 .table-warning tbody+tbody {
-    border-color: #fff6a1;
+    border-color: #020826;
 }
 
 .table-hover .table-warning:hover {

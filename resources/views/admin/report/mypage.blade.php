@@ -4,8 +4,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 mx-auto">
-            <h2>my page</h2>
+            <h2 class="head_test">my page</h2>
             <form action="{{action('Admin\ReportController@add')}}" method="get">
+            {{-- 新規登録 --}}
+                
+            
+
                 @if (count($errors) > 0)
                 <ul>
                     @foreach($errors->all() as $e)
@@ -14,31 +18,38 @@
                 </ul>
                 @endif
                 <div class="form-group row">
+                    <div class="col-md-10 text-center">
+                    <img src="{{ asset('storage/image/' . $your_account->photo) }}" style="width: 60%">
+                    </div>
+                </div>
+                {{-- 新規登録 --}}
+                <div class="form-group row">
                     <div class="col-md-10">
-                    <img src="{{ asset('storage/image/' . $your_account->photo) }}" style="width: 40%">
+                        <!-- <input type="hidden" name="id" value="{{-- $report->id --}}"> -->
+                        <!-- ↑いらない。新規投稿だったらidに紐付ける必要なし -->
+                        <a href="/report/add" input type="button" class="button-3">新規投稿</a>
                     </div>
                 </div>
                 @foreach($reports as $report)
+
                 <div class="form-group row">
-                    <label class="col-md-2" for="report">●</label>
+                    <!-- <label class="col-md-2" for="report">●</label> -->
                     <div class="col-md-10">
-                        <p>{{date_format(date_create($report->update_at), 'Y-m-d')}}</p>
-                        <p>{{$report->report}}</p>
-                        <!-- ↓編集画面に移動 -->
-                        <a href="/report/edit?id={{$report->id}}" class="button">編集</a>
+                        <div class="box26">
+                            <!-- <div class="card body"> -->
+                                <p span class="box-title">{{date_format(date_create($report->update_at), 'Y-m-d')}}</p>
+                                <h5><p>{{$report->report}}</p></h5>
+                                <!-- ↓編集画面に移動 -->
+                                <a href="/report/edit?id={{$report->id}}" class="card-link">編集</a>                            
+                            <!-- </div> -->
+                        </div>
+
+                    
                     </div>
                 </div>
                 
                 @endforeach
-
-                {{-- 新規登録 --}}
-                <div class="form-group row">
-                    <div class="col-md-10">
-                        <input type="hidden" name="id" value="{{ $report->id }}">
-                        <a href="/report/add" class="btn btn-secondary">＋</a>
-                    </div>
-                </div>
-               
+                
             </form>
         </div>
     </div>

@@ -1,8 +1,8 @@
 body {
     background-repeat: no-repeat;
     background-position: center;
-    background-color: #fef6e4;
-    color: #716040;
+    background-color: #f9f4ef;
+    color: #020826;
 }
 
 .navbar-laravel {
@@ -84,14 +84,19 @@ body {
     background-color: #8c7851;
     color: #fffffe;
     width: 70px;
-    height: 40px;
+    height: 30px;
     text-align: center;
     padding-top: 3px;
     margin-bottom: 10px;
     margin-left: 30px;
     border-radius: 10%;
-    border-width: 2px;
-    border-style: outset;
-    box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 1);
+    border-width: 0px;
+    /* border-style: outset; */
+    box-shadow: 3px 3px 0px 0 #f25042;
     border-image: initial;
+}
+
+.btn input-group-append {
+    background-color: #8c7851;
+    color: #fffffe;
 }

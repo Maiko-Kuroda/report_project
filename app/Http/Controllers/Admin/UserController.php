@@ -30,23 +30,27 @@ class UserController extends Controller
         // $this->validate($request, User::$rules); ←使うなら$rulesを定義する必要
         $user = user::find($request->id);
         $account_form = $request->all();
-        $file = $request->file('Photo');
-        $name = $file->getClientOriginalName();
+        
         if (isset($account_form['photo'])) {
+            $file = $request->file('photo'); // 8/2 Photo→photoに修正
+             $name = $file->getClientOriginalName();
             $path = $request->file('photo')->store('public/image');
             $user->photo = basename($path);
             unset($account_form['photo']);
+            InterventionImage::make($file)->resize(1080, null, function ($constraint) {
+            $constraint->aspectRatio();
+            })->save(public_path('storage/image' . $user->photo));// 8/2 「image」→「storage/image」に修正
         } elseif (0 == strcmp($request->remove, 'true')) {
             $user->photo = null;
         }
-        InterventionImage::make($file)->resize(1080, null, function ($constraint) {
-            $constraint->aspectRatio();
-        })->save(public_path('/images/' . $filename));;
+        
         unset($account_form['_token']);
         // ↓　fillでフォームから受け取ったデータをユーザーに埋め込む（設定）し保存
         $user->fill($account_form)->save();
-        return redirect('/user/edit');
+        // return redirect('/user/edit');
+        return redirect('report/mypage');
     }
+
     public function __construct()
     {
         $this->middleware('auth');

@@ -17,7 +17,7 @@
 
                 <div class="form-group row">
         
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                        <img src="{{ asset('storage/image/' . $your_account->photo) }}" style="width: 50%" >
                     </div>
                 </div>
