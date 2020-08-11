@@ -18,13 +18,13 @@
                 </ul>
                 @endif
                 <div class="form-group row">
-                    <div class="col-md-10 text-center">
-                    <img src="{{ asset('storage/image/' . $your_account->photo) }}" style="width: 60%">
+                    <div class="col-md-12 text-center">
+                    <img src="{{ asset('storage/image/' . $your_account->photo) }}" style="width: 50%">
                     </div>
                 </div>
                 {{-- 新規登録 --}}
                 <div class="form-group row">
-                    <div class="col-md-10">
+                    <div class="col-md-10 offset-md-1">
                         <!-- <input type="hidden" name="id" value="{{-- $report->id --}}"> -->
                         <!-- ↑いらない。新規投稿だったらidに紐付ける必要なし -->
                         <a href="/report/add" input type="button" class="button-3">新規投稿</a>
@@ -34,7 +34,7 @@
 
                 <div class="form-group row">
                     <!-- <label class="col-md-2" for="report">●</label> -->
-                    <div class="col-md-10">
+                    <div class="col-md-10 offset-md-1">
                         <div class="box26">
                             <!-- <div class="card body"> -->
                                 <p span class="box-title">{{date_format(date_create($report->update_at), 'Y-m-d')}}</p>

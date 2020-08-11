@@ -4,8 +4,8 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 mx-auto">
-            <h2>プロフィール</h2>
+        <div class="col-md-8 col-pb-3 mx-auto">
+            <h2 class="head_test">プロフィール</h2>
             <form action="{{action('Admin\UserController@yourAccount')}}" method="get">
                 @if (count($errors) > 0)
                         <ul>
@@ -17,68 +17,48 @@
 
                 <div class="form-group row">
         
-                    <div class="col-md-12">
+                    <div class="col-md-12 text-center">
                        <img src="{{ asset('storage/image/' . $your_account->photo) }}" style="width: 50%" >
                     </div>
                 </div>
                 <div class="py0">
                     <div class="row">
-                        <div class="col-md-5">
-                            <div class="card">
-                                <div class="card-header" > name </div>
-                                    <div class="card-body">
-                                        <blockquote class="blockquote mb-0">
-                                            <p>{{$your_account->name}}</p>
-                                        </blockquote>
-                                    </div>
-                                </div>
+                        <div class="col-md-10 offset-md-1">
+                            <div class="box26">
+                                <p span class="box-title"> name </p>
+                                <h5><p>{{$your_account->name}}</p></h5>                                
                             </div>
                         </div>
                     </div>
                     <div class="py0">
                     <div class="row">
-                        <div class="col-md-5">
-                            <div class="card">
-                                <div class="card-header" > mail </div>
-                                    <div class="card-body">
-                                        <blockquote class="blockquote mb-0">
-                                            <p>{{$your_account->email}}</p>
-                                        </blockquote>
-                                    </div>
-                                </div>
+                        <div class="col-md-10 offset-md-1">
+                            <div class="box26">
+                                <p span class="box-title"> mail </p>
+                                <h5><p>{{$your_account->email}}</p></h5>
                             </div>
                         </div>
                     </div>
                     <div class="py0">
                     <div class="row">
-                        <div class="col-md-5">
-                            <div class="card">
-                                <div class="card-header" > group </div>
-                                    <div class="card-body">
-                                        <blockquote class="blockquote mb-0">
-                                            <p>{{$your_account->group_name}}</p>
-                                        </blockquote>
-                                    </div>
-                                </div>
+                        <div class="col-md-10 offset-md-1">
+                            <div class="box26">
+                                <p span class="box-title"> group </p>
+                                <p>{{$your_account->group_name}}</p>
                             </div>
                         </div>
                     </div>
                     <div class="py0">
                     <div class="row">
-                        <div class="col-md-5">
-                            <div class="card">
-                                <div class="card-header" > hobby </div>
-                                    <div class="card-body">
-                                        <blockquote class="blockquote mb-0">
-                                            <p>{{$your_account->hobby}}</p>
-                                        </blockquote>
-                                    </div>
-                                </div>
+                        <div class="col-md-10 offset-md-1">
+                            <div class="box26">
+                                <p span class="box-title"> hobby </p>        
+                                <p>{{$your_account->hobby}}</p>
                             </div>
                         </div>
                     </div>
                 <div class="form-group row">
-                   <div class="col-md-10">
+                   <div class="col-md-12 offset-md-1">
                        <input type="hidden" name="id" value="{{ $your_account->id }}">
                        {{ csrf_field() }}
                        <input type="button" class="button" onclick="location.href='./user/edit'" value="編集する">

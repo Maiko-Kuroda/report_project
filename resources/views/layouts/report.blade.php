@@ -19,6 +19,7 @@
         <!-- Fonts -->
         <link rel="dns-prefetch" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Noto+Sans+JP:400,700" rel="stylesheet">
 
         <!-- Styles -->
         {{-- Laravel標準で用意されているCSSを読み込みます --}}

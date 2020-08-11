@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Auth;
 // ↓　Userモデルを使うための設定
 use App\User;
+use App\Follow;
 
 // ↓画像のサイズ変換
 use \InterventionImage;
