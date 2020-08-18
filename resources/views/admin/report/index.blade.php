@@ -43,17 +43,19 @@
         <div class="row">
             <div class="admin-report col-md-12 mx-auto">
                 <div class="row">
-                <table class="table">
+                <table class="table member-table">
                         <thead>
                             <tr class="table-warning">
-                                
                                 <th width="10%"></th>
                                 <th width="20%">更新日時</th>
                                 <th width="40%">メンバー</th>
                                 <th width="40%"></th>
+                                
                             </tr>
+                            
                         </thead>
                         <tbody>
+                        
                             @foreach($posts as $report)
                                 <tr>
                                     <!-- <th>{{ $report->id }}</th> -->
@@ -63,6 +65,7 @@
                                     <td>{{ $report->report }}</td>
                                 </tr>
                             @endforeach
+                           
                         </tbody>
                     </table>
                 </div>

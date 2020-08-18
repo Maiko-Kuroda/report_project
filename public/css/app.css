@@ -1822,10 +1822,10 @@ pre code {
     border-top: 1px solid #dee2e6;
 }
 
-.table thead th {
+/* .table thead th {
     vertical-align: bottom;
     border-bottom: 2px solid #dee2e6;
-}
+} */
 
 .table tbody+tbody {
     border-top: 2px solid #dee2e6;
@@ -2723,8 +2723,8 @@ fieldset:disabled a.btn {
 
 .btn-primary {
     color: #fff;
-    background-color: #3490dc;
-    border-color: #64a3d6;
+    background-color: #8c7851;
+    border-color: #716040;
     margin-bottom: 2rem;
 }
 

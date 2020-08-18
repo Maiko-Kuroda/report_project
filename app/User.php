@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'group_name', 'hobby', 'photo', 'email', 'password',
+        'name', 'hobby', 'photo', 'email', 'password',
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -35,6 +35,14 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Report');
     }
+    
+    //ユーザー1人に対して、グループが複数紐づいているので、「userGroups」(複数形)
+    public function userGroups()
+    {
+        return $this->hasMany('App\UserGroup');
+    }
+
+
     //フォローしているユーザー一覧取得
     public function following()
     {

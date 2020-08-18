@@ -67,7 +67,7 @@ class RegisterController extends Controller
         // dd($data);
         return User::create([
             'name' => $data['name'],
-            'group_name' => $data['group_name'],
+            // 'group_name' => $data['group_name'],
             'hobby' => $data['hobby'],
             'photo' => Self::imageUpload(),
             'email' => $data['email'],

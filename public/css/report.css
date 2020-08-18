@@ -58,3 +58,12 @@
     border: 2px;
     border-color: #020826;
 }
+
+.member-table thead th {
+    vertical-align: bottom;
+    border-bottom: 1px solid #020826;
+}
+
+.member-table {
+    border-radius: 10%;
+}

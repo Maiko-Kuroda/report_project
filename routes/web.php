@@ -40,6 +40,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/report/create', 'Admin\ReportController@create');
     Route::get('/report/mypage', 'Admin\ReportController@showMypage');
     
+    Route::get('/group/add', 'Admin\GroupController@add');
+    Route::post('/group/create', 'Admin\GroupController@create');
+    Route::get('/group/welcome', 'Admin\GroupController@welcome');
+    Route::get('/group/login', 'Admin\GroupController@enter');
+    Route::post('/group/enter', 'Admin\GroupController@login');
+
     // Route::get('/{message}', 'UserController@index');
     Route::get('report', 'Admin\ReportController@index');
 });
