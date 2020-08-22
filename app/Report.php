@@ -11,7 +11,7 @@ class Report extends Model
     public static $rules = array(
         'body' => 'required',
         'user_id' => 'required',
-        
+        'group_id' => 'required',
 
         );
         
