@@ -13,6 +13,7 @@ class GroupController extends Controller
      {
          $request->session()->put("fromUrl", url()->previous());
          return view('admin.user.group_create');
+
      }
 
     //グループの新規作成更新処理（post）
@@ -46,7 +47,14 @@ class GroupController extends Controller
 
     public function login(Request $request)
     {
-
+        Gruop::where(‘name’,$request)->get()//グループテーブル内に入力した値がグループテーブルの中に存在するかを検索する必要あり
+        //存在したら処理進む、存在してなかったらエラーを出す
+        //エラーの場合はアドルームに戻して、エラ〜メッセージを表示
+        //存在したら、ユーざーグループにグループが存在するかを検索
+        //存在したら、次の処理
+        //存在しなかったら、グループの登録処理に進む
+        //入ったグループのレポート一覧を返す
+        //レポートテーブルに対してグループ50行めのグループIdを元にレポートを検索
         
     }
 

@@ -9,15 +9,15 @@ class Group extends Model
     //
     protected $guarded = array('id');
     public static $rules = array(
-        'body' => 'required',
-        'user_id' => 'required',
+        'group_name' => 'required',
+        // 'user_id' => 'required',
         
 
         );
         
-        //これでレポートを引っ張るときにユーザーIDと一致するものを
-        public function user()
+        //これでグループを引っ張るときにユーザーIDと一致するものを
+        public function UserGroups()
         {
-            return $this->belongsTo('App\User');
+            return $this->hasMany('App\UserGroup');
         }
 }

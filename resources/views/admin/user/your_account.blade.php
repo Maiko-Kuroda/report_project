@@ -1,7 +1,17 @@
 @extends('layouts.account')
 @section('title', 'アカウント')
-
 @section('content')
+
+<div class="row">
+    <div class="col-md-3 text-center " >
+        <a class="btn w-75 btn-outline-secondary" onclick="location.href='/group/login'" style="	box-shadow: 0px 0px 4px  black;	border-color: #f25042;">Join room</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3 text-center pt-2">
+        <a class="btn w-75 btn-outline-secondary" onclick="location.href='/group/add'" style="box-shadow: 0px 0px 4px  black;	border-color: #716040;">Add more room</a>
+    </div>
+</div>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-pb-3 mx-auto">

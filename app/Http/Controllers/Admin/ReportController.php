@@ -49,6 +49,7 @@ class ReportController extends Controller
         // データベースに保存する
         //↓ログインしているユーザーの情報を登録情報に追加している。
         $form['user_id'] = Auth::id();
+        $form['group_id'] = Auth::id();
         $report->fill($form);
         $report->save();
         //更新ボタンを押したらreport/mypage（自分のレポート一覧みれるページ）にリダイレクトする・mypage新規で作る必要あり

@@ -14,7 +14,7 @@ class CreateReportsTable extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('user_id');  //レポートとユーザを接続するためのカラム
-            $table->string('group_id');
+            $table->string('group_id');//レポートとグループを接続するためのカラム
             $table->string('report');  //レポートを保存するカラム
             $table->timestamps();
         });
