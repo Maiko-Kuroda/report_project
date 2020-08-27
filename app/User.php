@@ -36,10 +36,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Report');
     }
     
-    //ユーザー1人に対して、グループが複数紐づいているので、「userGroups」(複数形)
-    public function userGroups()
+    //ユーザーとグループがN:Nの関係のため
+    //Groups.phpには　function users
+    public function groups()
     {
-        return $this->hasMany('App\UserGroup');
+        return $this->belongsToMany('App\Group');
     }
 
 
@@ -51,7 +52,7 @@ class User extends Authenticatable
     //フォローされているユーザー一覧取得
     public function followers()
     {
-        return $this->belongsToMany(User::class, 'follows', 'from', 'to')->withTimestamps();
+        return $this->belongsToMany(User::class, 'follows', 'to', 'from')->withTimestamps();
     }
     public function getAllUsers(Int $user_id)
     {

@@ -15,8 +15,9 @@ class Group extends Model
 
         );
         
-        //これでグループを引っ張るときにユーザーIDと一致するものを
-        public function UserGroups()
+        //ユーザーとグループがN:Nの関係のため
+        //User.phpには　fumction groups
+        public function users()
         {
             return $this->hasMany('App\UserGroup');
         }
