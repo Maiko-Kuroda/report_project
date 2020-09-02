@@ -16,7 +16,6 @@
     <div class="row">
         <div class="col-md-10 text-center offset-1">
             <a class="btn w-75 btn-outline-secondary" onclick="location.href='./add'" style="box-shadow: 0px 0px 4px  black;	border-color: #716040;">Add more room</a>
-
         </div>
     </div>
 </div>

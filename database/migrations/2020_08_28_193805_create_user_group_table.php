@@ -11,13 +11,18 @@ class CreateUserGroupTable extends Migration
      *
      * @return void
      */
+    
+    
+     //【中間テーブル】
+    // userてーぶるとグループテーブルがあって、それを繋ぐのが中間テーブル
+    // グループidとグループ名
     public function up()
     {
         Schema::create('user_group', function (Blueprint $table) 
         {
             $table->string('user_id');
             $table->string('group_id');
-            $table->primary(['group_id','group_id']); //主キーを指定.複合キー追加
+            $table->primary(['user_id','group_id']); //主キーを指定.複合キー追加
 
             //データベースレベルの整合性を強制するために、テーブルに対する外部キー束縛の追加
             //さらに束縛に対して「デリート時(on delete)」と「更新時(on update)」に対する処理をオプションとして指定

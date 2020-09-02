@@ -19,6 +19,6 @@ class Group extends Model
         //User.phpには　fumction groups
         public function users()
         {
-            return $this->hasMany('App\UserGroup');
+            return $this->hasMany('App\User');
         }
 }

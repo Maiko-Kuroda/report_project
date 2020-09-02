@@ -20,6 +20,7 @@
                         rows="20">{{ old('group') }}</textarea>
                     </div>
                 </div>
+                
                 <div class="form-group row">
                     <div class="col-md-10">
                         {{ csrf_field() }}

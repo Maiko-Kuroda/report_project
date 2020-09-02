@@ -15,8 +15,8 @@ class CreateGroupsTable extends Migration
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
-            $table->string('group');
+            // $table->string('user_id');//中間テーブルをつくるならいらない？
+            $table->string('name');
             $table->timestamps();
         });
     }
