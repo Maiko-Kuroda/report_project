@@ -16,7 +16,7 @@
                 @endif
                 <div class="from-group row">
                     <div class="col-md-10">
-                    <textarea class="form-control group-textarea" name="group"
+                    <textarea class="form-control group-textarea" name="name"
                         rows="20">{{ old('group') }}</textarea>
                     </div>
                 </div>

@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/user/update', 'Admin\UserController@update');
     Route::get('/user','Admin\UserController@yourAccount');
     Route::get('/user/index','Admin\UserController@index')->middleware('auth');
+   
     Route::post('/user/follow', 'Admin\FollowController@follow');
     Route::post('/user/unfollow', 'Admin\FollowController@unfollow');
 
@@ -39,15 +40,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/report/add', 'Admin\ReportController@add');
     Route::post('/report/create', 'Admin\ReportController@create');
     Route::get('/report/mypage', 'Admin\ReportController@showMypage');
-    
+    Route::get('report', 'Admin\ReportController@index');
+
     Route::get('/group/add', 'Admin\GroupController@add');
     Route::post('/group/create', 'Admin\GroupController@create');
     Route::get('/group/welcome', 'Admin\GroupController@welcome');
     Route::get('/group/login', 'Admin\GroupController@enter');
+    // Route::('/group/login', 'Admin\GroupController@enter');
     Route::post('/group/enter', 'Admin\GroupController@login');
 
     // Route::get('/{message}', 'UserController@index');
-    Route::get('report', 'Admin\ReportController@index');
+
 });
 
 Auth::routes();

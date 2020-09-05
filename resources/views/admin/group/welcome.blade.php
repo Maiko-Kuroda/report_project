@@ -1,4 +1,6 @@
-@extends('layouts.user_index')
+@extends('layouts.group')
+@section('title', 'Welcome')
+
 @section('content')
 
 <nav class="navbar navbar-default">
@@ -11,6 +13,7 @@
     <div class="collapse navbar-collapse" id="defaultNavbar1" >
       <ul class="nav navbar-nav">
         <li><a href="/report"><span class="glyphicon glyphicon-picture"></span> report room</a></li>
+        <li><a href="./user"><span class="glyphicon glyphicon-picture"></span> my page</a></li>
         <li><a href="./user/index"><span class="glyphicon glyphicon-credit-card"></span> user index</a></li>
         <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">chenge room<b class="caret"></b></a>
             <ul class="dropdown-menu">
@@ -28,28 +31,21 @@
   <!-- /.container-fluid --> 
 </nav>
 
+
 <div class="container">
-    <div class="row justify-content-center">
-    <h2 class="head_test">ユーザー一覧</h2>
-    <form action="{{action('Admin\UserController@index')}}" method="get">
-        <div class="col-md-8">
-          @foreach ($all_users as $user)
-          <div class="card" style="color: black">
-            <div class="card-haeder p-3 w-100 d-flex">
-              <img src="{{ asset('storage/image/' . $user->photo) }}" class="rounded-circle" width="50" height="50">
-              <div class="ml-5 d-flex flex-column">
-                  <p class="mb-0">{{ $user->name }}</p>
-                  <a href="{{ url('users/' .$user->id) }}" class="text-secondary">{{ $user->id }}</a>
-              </div>
-              <div class="d-flex flex-column follow-btn">
-                  <span class="userId" data-userid={{ $user->id }}></span>
-                  <span class="isFollow" data-isFollow='false'>フォローする</span>
-              </div>
-            </div>
-          </div>
-          @endforeach
+    <div class="row">
+    <div class="col-md-8 col-pb-3 mx-auto">
+        <h2 class="head_test">Welcome</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-10 text-center pt-5 offset-1" >
+            <a class="btn w-75 btn-outline-secondary" onclick="location.href='./login'" style="	box-shadow: 0px 0px 4px  black;	border-color: #f25042;">Join room</a>
         </div>
-      </form>
+    </div>
+    <div class="row">
+        <div class="col-md-10 text-center offset-1">
+            <a class="btn w-75 btn-outline-secondary" onclick="location.href='./add'" style="box-shadow: 0px 0px 4px  black;	border-color: #716040;">Add more room</a>
+        </div>
     </div>
 </div>
 @endsection

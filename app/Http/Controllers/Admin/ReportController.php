@@ -4,7 +4,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 use App\Report;
-class ReportController extends Controller
+class ReportController extends Controller   
 {
     // レポート一覧表示
     public function index(Request $request)
@@ -40,25 +40,7 @@ class ReportController extends Controller
         return view('admin.report.report',['report' => $report]);
     }
 */
-    //新規レポート更新処理（post）
-    public function create(Request $request)
-    {
-        $report = new report;
-        $form = $request->all();
-        unset($form['_token']);
-        // データベースに保存する
-        //↓ログインしているユーザーの情報を登録情報に追加している。
-        $form['user_id'] = Auth::id();
-        $form['group_id'] = Auth::id();
-        $report->fill($form);
-        $report->save();
-        //更新ボタンを押したらreport/mypage（自分のレポート一覧みれるページ）にリダイレクトする・mypage新規で作る必要あり
-        //↓　フォームに入力された内容にDBに保存するアクション
-        $toUrl = $request->session()->get("fromUrl");
-        $request->session()->forget("formUrl");
-        return redirect($toUrl);
 
-    }
     //新規レポート投稿画面（get）
     public function add(Request $request)
     {
@@ -84,6 +66,27 @@ class ReportController extends Controller
         $reports = Report::where('user_id', Auth::id())->orderBy('updated_at', 'desc')->get();
         return view('admin.report.myPage', ['your_account' => $your_account, 'reports' => $reports]);
     }
+
+    //新規レポート更新処理（post）
+    public function create(Request $request)
+    {
+        $report = new report;
+        $form = $request->all();
+        unset($form['_token']);
+        // データベースに保存する
+        //↓ログインしているユーザーの情報を登録情報に追加している。
+        $form['user_id'] = Auth::id();
+        $form['group_id'] = Auth::id();
+        $report->fill($form);
+        $report->save();
+        //更新ボタンを押したらreport/mypage（自分のレポート一覧みれるページ）にリダイレクトする・mypage新規で作る必要あり
+        //↓　フォームに入力された内容にDBに保存するアクション
+        $toUrl = $request->session()->get("fromUrl");
+        $request->session()->forget("formUrl");
+        return redirect($toUrl);
+
+    }
+
     //レポート編集画面
     public function edit(Request $request)
     {

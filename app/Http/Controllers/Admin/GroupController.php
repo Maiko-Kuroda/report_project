@@ -21,14 +21,16 @@ class GroupController extends Controller
     public function create(Request $request)
     {
         $group = new group;
-        $group_form = $request->all();
-        unset($group_form['_token']);// データベースがパンクするので、消す処理
+        $group_form = $request->all(); //blade
+        unset($group_form['_token']);// テーブルにない項目を削除されるのを防ぐ
+        unset($group_form['group']);
         $group->fill($group_form);//15行めを全てを配列にしてもらっているモデルのインスタンスに要素を詰め込む
-        $group->user_id = Auth::id();
+        // $group->user_id = Auth::id();
         $group->save();
         $toUrl = $request->session()->get("fromUrl");
         $request->session()->forget("formUrl");
-        return redirect($toUrl);
+        // return redirect($toUrl);
+        return view ('admin.report',['report' => $reports]);
         
     }
    
@@ -46,31 +48,26 @@ class GroupController extends Controller
         return view('admin.user.group_login');
     }
 
+    //既存グループへのログイン(post)
     public function login(Request $request)
     {
         $your_group = $request->your_group; 
-        $posts = Report::
-        $group;
-    //     //存在したら処理進む、存在してなかったらエラーを出す
-    //     //エラーの場合はアドルームに戻して、エラ-メッセージを表示
-    //     //存在したら、ユーザーグループにグループが存在するかを検索
-    //     //存在したら、次の処理
-    //     //存在しなかったら、グループの登録処理に進む
-    //     //入ったグループのレポート一覧を返す
-    //     //レポートテーブルに対してグループ50行めのグループIdを元にレポートを検索
-    // $query->where('status',1); // status が 1 のものだけを取得する
-        Gruop::where('name',$request)->get()//グループテーブル内に入力した値がグループテーブルの中に存在するかを検索する必要あり
-        $this->middleware('group')->except('admin.user.welcome');
-        Gruop::where('group_id',$posts)->get()
-        $group_report = Report::where('group_id',Auth::id())->get();
+        //存在したら処理進む、存在してなかったらエラーを出す
+        //エラーの場合はアドルームに戻して、エラ-メッセージを表示
+        //存在したら、ユーザーグループにグループが存在するかを検索
+        //存在したら、次の処理
+        //存在しなかったら、グループの登録処理に進む
+        //入ったグループのレポート一覧を返す
+        //レポートテーブルに対してグループ50行めのグループIdを元にレポートを検索
+    
+        $group= Gruop::where('name',$your_group)->get();//グループテーブル内に入力した値がグループテーブルの中に存在するかを検索する必要あり
+       if (is_null($group)) {
+           redirect('admin.user.welcome');
+       }
+       $reports= Report::where('group_id',$group->id)->get();//where('左がカラム名','右一致してほしいグループの中のID')
+       return view ('admin.report',['report' => $reports]);
 
-        
-
-// ユーザに紐づいたグループだけを表示させる
-// selectで選択できる
-    // }
+    }
 
 
 }
-
-
