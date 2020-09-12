@@ -6,6 +6,8 @@ use Auth;
 // ↓　Userモデルを使うための設定
 use App\User;
 use App\Follow;
+use App\Group;
+use App\UserGroup;
 
 // ↓画像のサイズ変換
 use \InterventionImage;
@@ -22,14 +24,17 @@ class UserController extends Controller
     {
         // controllerファイルからbladeファイル へユーザー情報を渡す
         // Auth::user();でログイン中のユーザー情報を取得できる。
+        $groups = Group::get();// グループ全部とってくる。
         $your_account = Auth::user();
-        return view('admin.user.edit', ['your_account' => $your_account]);
+        $user_group = UserGroup::where('user_id', Auth::id())->get();
+        // dd($groups);
+        return view('admin.user.edit', ['your_account' => $your_account,'groups' => $groups,"user_group" =>$user_group]);
     }
     // post
     public function update(Request $request)
     {
         // $this->validate($request, User::$rules); ←使うなら$rulesを定義する必要
-        $user = user::find($request->id);
+        $user = Auth::user();
         $account_form = $request->all();
         
         if (isset($account_form['photo'])) {
@@ -37,6 +42,7 @@ class UserController extends Controller
              $name = $file->getClientOriginalName();
             $path = $request->file('photo')->store('public/image');
             $user->photo = basename($path);
+            $user->save();
             unset($account_form['photo']);
             InterventionImage::make($file)->resize(1080, null, function ($constraint) {
             $constraint->aspectRatio();
@@ -49,8 +55,10 @@ class UserController extends Controller
         // ↓　fillでフォームから受け取ったデータをユーザーに埋め込む（設定）し保存
         $user->fill($account_form)->save();
         // return redirect('/user/edit');
+        $user->groups()->attach(request()->groups);//グループidを保存（中間テーブルに保存するときはattachをつかう。ユーザーidは$user=Auth::userで取れている）
         return redirect('report/mypage');
     }
+
 
     public function __construct()
     {

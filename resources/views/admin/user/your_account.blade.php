@@ -75,6 +75,7 @@
                         <div class="col-md-10 offset-md-1">
                             <div class="box26">
                                 <p span class="box-title"> group </p>
+                                  
                                 <p>{{$your_account->group_name}}</p>
                             </div>
                         </div>

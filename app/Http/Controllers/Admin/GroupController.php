@@ -13,8 +13,7 @@ class GroupController extends Controller
      public function add(Request $request)
      {
          $request->session()->put("fromUrl", url()->previous());
-         return view('admin.user.group_create');
-
+         return view('admin.group.group_create');
      }
 
     //グループの新規作成更新処理（post）
@@ -30,25 +29,25 @@ class GroupController extends Controller
         $toUrl = $request->session()->get("fromUrl");
         $request->session()->forget("formUrl");
         // return redirect($toUrl);
-        return view ('admin.report',['report' => $reports]);
-        
+        // return view ('admin.report',['report' => $reports]);
+        return view ('admin.report.create');
     }
    
     //グループのエントランス(get)
     public function welcome(Request $request)
     {
         $request->session()->put("fromUrl", url()->previous());
-        return view('admin.user.welcome');
+        return view('admin.group.welcome');
     }
 
     //既存グループへのログインページ(get)
     public function enter(Request $request)
     {
         $request->session()->put("fromUrl", url()->previous());
-        return view('admin.user.group_login');
+        return view('admin.group.group_login');
     }
 
-    //既存グループへのログイン(post)
+    //既存グループへのログイン処理(post)
     public function login(Request $request)
     {
         $your_group = $request->your_group; 
@@ -62,12 +61,17 @@ class GroupController extends Controller
     
         $group= Gruop::where('name',$your_group)->get();//グループテーブル内に入力した値がグループテーブルの中に存在するかを検索する必要あり
        if (is_null($group)) {
-           redirect('admin.user.welcome');
+           redirect('admin.group.welcome');
        }
        $reports= Report::where('group_id',$group->id)->get();//where('左がカラム名','右一致してほしいグループの中のID')
        return view ('admin.report',['report' => $reports]);
 
     }
+
+        // public function regist(Request $request)
+        // {
+        //     $your_group =$group => $request->group;
+        // }
 
 
 }

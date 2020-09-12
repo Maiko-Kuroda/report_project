@@ -84,7 +84,7 @@ class ReportController extends Controller
         $toUrl = $request->session()->get("fromUrl");
         $request->session()->forget("formUrl");
         return redirect($toUrl);
-
+        // リクエストのもと（グループ新規作成）
     }
 
     //レポート編集画面

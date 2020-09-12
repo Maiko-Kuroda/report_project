@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 mx-auto">
             <h2>room name</h2>
-            <form action="{{action('Admin\GroupController@enter')}}" method="post" enctype="multipart/group_form-data"
+            <form action="{{action('Admin\GroupController@enter')}}" method="get" enctype="multipart/group_form-data"
                 class="create-group-form">
                 @if (count($errors) > 0)
                 <ul>
