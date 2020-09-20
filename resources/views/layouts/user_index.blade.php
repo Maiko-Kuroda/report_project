@@ -39,22 +39,40 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                <!-- <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                </button> -->
+                <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                    </ul>
+                    <!-- <ul class="navbar-nav mr-auto"> -->
+                    <!-- </ul> -->
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                
-                    <!-- ::: -->
-                    </ul>
+                <div class="navbar-header">
+                    <a type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar">
+                        <span class="material-icons h1">child_care</span>
+                    </a>
                 </div>
+                <div class="collapse navbar-collapse" id="defaultNavbar" >
+                <ul class="nav navbar-nav">
+                    <li><a href="/report"><span class="glyphicon glyphicon-picture"></span> report room</a></li>
+                    <li><a href="/user"><span class="glyphicon glyphicon-picture"></span> my page</a></li>
+                    <li><a href="/user/index"><span class="glyphicon glyphicon-credit-card"></span> user index</a></li>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">chenge room<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">グループ１</a></li>
+                            <li><a href="#">グループ2</a></li>
+                            <li><a href="#">グループ3</a></li>
+                        </ul>
+                    </li>      
+                    <li><a href="/group/welcome"><span class="glyphicon glyphicon-credit-card"></span> group top</a></li>
+                    <li><a href="artist_logout.php"><span class="glyphicon glyphicon-off"></span> log out</a></li>
+                </ul>          
+                </div> 
+                <!-- </div> -->
             </div>
+            <!-- </div> -->
 
         </nav>
         @section('content')
@@ -63,7 +81,6 @@
 
                 <div class="navbar-header">
                 <a type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1">
-                <!-- <span class="sr-only">MENU</span> -->
                 <span class="material-icons h1">child_care</span>
                 </a>
                 </div>
@@ -83,8 +100,8 @@
                     <li><a href="/group/welcome"><span class="glyphicon glyphicon-credit-card"></span> group top</a></li>
                     <li><a href="artist_logout.php"><span class="glyphicon glyphicon-off"></span> log out</a></li>
                 </ul>          
-                </div>
-                <!-- /.navbar-collapse --> 
+                </div> 
+                <!-- /.navbar-collapse 
             </div>
             <!-- /.container-fluid --> 
             </nav>
