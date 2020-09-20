@@ -49,6 +49,8 @@
                     <!-- <ul class="navbar-nav mr-auto"> -->
                     <!-- </ul> -->
                     <!-- Right Side Of Navbar -->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid"> 
                 <div class="navbar-header">
                     <a type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar">
                         <span class="material-icons h1">child_care</span>
@@ -68,15 +70,21 @@
                     </li>      
                     <li><a href="/group/welcome"><span class="glyphicon glyphicon-credit-card"></span> group top</a></li>
                     <li><a href="artist_logout.php"><span class="glyphicon glyphicon-off"></span> log out</a></li>
+                    <!-- <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-toggle" href="#">Action</a>
+                        <ul class="dropdown-menu">
+                        <a class="dropdown-toggle" href="#">Action</a> -->
+
+
                 </ul>          
                 </div> 
                 <!-- </div> -->
             </div>
             <!-- </div> -->
-
+            </nav>
         </nav>
         @section('content')
-            <nav class="navbar navbar-default">
+            <!-- <nav class="navbar navbar-default">
             <div class="container-fluid"> 
 
                 <div class="navbar-header">
@@ -101,10 +109,10 @@
                     <li><a href="artist_logout.php"><span class="glyphicon glyphicon-off"></span> log out</a></li>
                 </ul>          
                 </div> 
-                <!-- /.navbar-collapse 
+                /.navbar-collapse 
             </div>
-            <!-- /.container-fluid --> 
-            </nav>
+            /.container-fluid --> 
+            <!-- </nav> --> 
 
         {{-- ここまでナビゲーションバー --}}
         <main class="py-4">
