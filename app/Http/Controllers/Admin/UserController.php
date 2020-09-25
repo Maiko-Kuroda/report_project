@@ -8,7 +8,6 @@ use App\User;
 use App\Follow;
 use App\Group;
 use App\UserGroup;
-
 // ↓画像のサイズ変換
 use \InterventionImage;
 class UserController extends Controller
@@ -17,18 +16,18 @@ class UserController extends Controller
     {
         // Auth::user(class名：your_account)によってyour_account.blade.phpにアカウント情報を渡す
         $your_account = Auth::user();
-        return view('admin.user.your_account', ['your_account' => $your_account]);
+        $groups = $your_account->groups;
+        return view('admin.user.your_account', ['your_account' => $your_account, 'groups' => $groups]);
     }
     // get
-    public function edit(Request $request)
+    public function edit()
     {
         // controllerファイルからbladeファイル へユーザー情報を渡す
         // Auth::user();でログイン中のユーザー情報を取得できる。
         $groups = Group::get();// グループ全部とってくる。
         $your_account = Auth::user();
-        $user_group = UserGroup::where('user_id', Auth::id())->get();
-        // dd($groups);
-        return view('admin.user.edit', ['your_account' => $your_account,'groups' => $groups,"user_group" =>$user_group]);
+        $user_groups = $your_account->groups;
+        return view('admin.user.edit', ['your_account' => $your_account,'groups' => $groups, "user_groups" => $user_groups]);
     }
     // post
     public function update(Request $request)
@@ -36,7 +35,6 @@ class UserController extends Controller
         // $this->validate($request, User::$rules); ←使うなら$rulesを定義する必要
         $user = Auth::user();
         $account_form = $request->all();
-        
         if (isset($account_form['photo'])) {
             $file = $request->file('photo'); // 8/2 Photo→photoに修正
              $name = $file->getClientOriginalName();
@@ -50,16 +48,22 @@ class UserController extends Controller
         } elseif (0 == strcmp($request->remove, 'true')) {
             $user->photo = null;
         }
-        
         unset($account_form['_token']);
         // ↓　fillでフォームから受け取ったデータをユーザーに埋め込む（設定）し保存
         $user->fill($account_form)->save();
-        // return redirect('/user/edit');
-        $user->groups()->attach(request()->groups);//グループidを保存（中間テーブルに保存するときはattachをつかう。ユーザーidは$user=Auth::userで取れている）
+        // return redirect('/user/edit')
+        // ユーザとグループの関係を初期化
+        $user->groups()->detach();
+        //グループidを保存（中間テーブルに保存するときはattachをつかう。ユーザーidは$user=Auth::userで取れている）
+        $groups = $request->input('groups');
+        foreach ($groups as $group) {
+            $user->groups()->attach(
+                ['group_id' => $group],
+                ['user_id' => Auth::id()]
+            );
+        }
         return redirect('report/mypage');
     }
-
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -72,7 +76,5 @@ class UserController extends Controller
         //フォローテーブル（カラムのto）を結合。
         $followList = Follow::where('to',Auth::id())->get();
         return view('admin.user.user_index', ['all_users' => $all_users]);
-
-
     }
 }

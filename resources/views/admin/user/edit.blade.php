@@ -1,6 +1,5 @@
 @extends('layouts.user')
 @section('title', 'プロフィールの編集')
-
 @section('content')
 <div class="container">
     <div class="row">
@@ -29,9 +28,18 @@
                 <div class="form-group row">
                     <label class="col-md-2" for="group_name">所属グループ</label>
                      <div class="col-md-10">
-                        <select multiple size="5">
+                        <select multiple name="groups[]" size="5">
                             @foreach($groups as $group)
-                                <option value="{{ $group->id }}">{{$group->name}}</option>
+                                @php
+                                    $isSelect = false;
+                                    foreach ($user_groups as $user_group) {
+                                        if($user_group->id === $group->id){
+                                            $isSelect = true;
+                                            break;
+                                        }
+                                    }
+                                @endphp
+                                <option value="{{ $group->id }}" @if($isSelect === true) selected @endif>{{$group->name}}</option>
                             @endforeach
                         </select>
                          <!-- <input type="text" class="form-control" name="group_name" value="{{ $your_account->group_name }}"> -->
@@ -48,8 +56,8 @@
                         <div class="col-md-10">
                             <input type="file" class="form-control-file" name="photo">
                         </div>
+                        
                 </div>
-
                <div class="form-group row">
                    <div class="col-md-10">
                        <input type="hidden" name="id" value="{{ $your_account->id }}">

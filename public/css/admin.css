@@ -14,7 +14,7 @@ body {
     color: #fff !important;
 }
 
-.collapse .navbar-collapse {
+.nav .navbar-nav {
     display: none;
 }
 
