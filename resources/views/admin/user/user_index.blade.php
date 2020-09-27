@@ -16,7 +16,18 @@
               </div>
               <div class="d-flex flex-column follow-btn">
                   <span class="userId" data-userid={{ $user->id }}></span>
-                  <span class="isFollow" data-isFollow='false'>フォローする</span>
+                  <!-- <span class="isFollow" data-isFollow='false'>フォローする</span> -->
+                  <span class="follow">
+                    @if (auth()->user()->following($user->id))
+                      <div class="px-2">
+                        <span class="px-1 bg-secondary text-light">フォロー中</span>
+                      </div>
+                    @else
+                    <div class="px-2">
+                        <span class="px-1 bg-secondary text-light">フォローする</span>
+                    </div>
+                    @endif
+                  </span>
               </div>
             </div>
           </div>

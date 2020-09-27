@@ -9,13 +9,17 @@ class FollowController extends Controller
     //フォローする
     public function follow(Request $request)
     {
+        //$userIDはフォローした人のID
         $form = $request->all();
         $userId = $form['user_id'];
         // フォローしているか
         $isFollowing = Self::isFollowing($userId);
+        //フォローしてる人をデーターベースに入れる処理↓
         if ($isFollowing == false) {
-            $follow = Follow::find($userId);
+            // $follow = Follow::find($userId);
+            //フォロー テーブルを作っている
             $follow = new Follow();
+
             $follow->fill(['from' => Auth::id(),'to' => $userId]);
             $follow->save();
         }

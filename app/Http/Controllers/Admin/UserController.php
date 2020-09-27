@@ -75,6 +75,7 @@ class UserController extends Controller
         $all_users = User::where('id', '<>', Auth::id())->get();
         //フォローテーブル（カラムのto）を結合。
         $followList = Follow::where('to',Auth::id())->get();
-        return view('admin.user.user_index', ['all_users' => $all_users]);
+        return view('admin.user.user_index', ['all_users' => $all_users,'follow_list' => $]);
+       
     }
 }
