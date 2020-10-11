@@ -67,7 +67,10 @@
                                         <input type="button" class="button" onclick="location.href='./user/edit'"
                                             value="編集する">
                                     </div>
+                                    <input type="button" class="button" onclick="location.href='./report/mypage'"
+                                            value="my reportへ">
                                 </div>
+                               
             </form>
         </div>
     </div>

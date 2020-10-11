@@ -30,7 +30,7 @@ class GroupController extends Controller
         $request->session()->forget("formUrl");
         // return redirect($toUrl);
         // return view ('admin.report',['report' => $reports]);
-        return view ('admin.report.create');
+        return view ('admin.group.new_group');
     }
    
     //グループのエントランス(get)
@@ -68,10 +68,6 @@ class GroupController extends Controller
 
     }
 
-        // public function regist(Request $request)
-        // {
-        //     $your_group =$group => $request->group;
-        // }
-
+   
 
 }

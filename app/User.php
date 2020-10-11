@@ -55,4 +55,9 @@ class User extends Authenticatable
     {
         return $this->Where('id', '!=', $user_id)->get();
     }
+    //フォローされているユーザー一覧取得
+    public function isFollowing($user_id)
+    {
+        return $this->following()->where('to', $user_id)->exists();
+    }
 }

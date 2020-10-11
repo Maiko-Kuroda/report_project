@@ -13,6 +13,6 @@ class Group extends Model
     //User.phpには　fumction groups
     public function users()
     {
-        return $this->belongsToMany('App\Users', 'user_group', 'group_id', 'user_id');
+        return $this->belongsToMany('App\User', 'user_group', 'group_id', 'user_id');
     }
 }

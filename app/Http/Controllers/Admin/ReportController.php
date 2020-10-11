@@ -3,16 +3,37 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use App\Group;
+use App\User;
 use App\Report;
+
 class ReportController extends Controller   
 {
     // レポート一覧表示
     public function index(Request $request)
     {
-        //ユーザーモデルでユーザー
+        $your_account = Auth::user();
+        $query = Group::all();
+        //ユーザーモデルでユーザー情報をすべて取ってくる
         //$requestのcond_userの値を$cond_userに代入
         $cond_user = $request->cond_user;
+        $group = $request->input('group');
         $posts;
+        $groups = $your_account->groups;
+        // dd($groups);
+        // dd($query->where('group_id', $group));
+
+        // プルダウンメニューで指定なし以外を選択した場合、$query->whereで選択したグループと一致するカラムを取得します
+        if ($request->has('group_id') && $group != ('指定なし')) {
+            $query->where('group_id', $group)->get();
+        }
+        
+
+        // ユーザ名入力フォームで入力した文字列を含むカラムを取得します
+        if ($request->has('name') && $cond_user != '') {
+            $query->where('name', 'like', '%'.$cond_user.'%')->get();
+        }
+
         if ($cond_user != '') {
             // 検索されたら検索結果を取得する
             $posts = Report::whereHas('user', function ($query) use ($cond_user) {
@@ -23,13 +44,15 @@ class ReportController extends Controller
             // それ以外はすべてのレポートを取得する
             $posts = Report::orderBy('updated_at', 'desc')->get();
         }
+
+
         //↓Y-m-d表記にViewで表示させたい
         // foreach($posts as &$post){
         //     // $date = date_create($post->created_at);
         //     $date = date_format($post->update_at, 'Y-m-d');
         //     $post->date = $date; //取得したレポートのデータを、Y-m-dに変換
         // }
-        return view('admin.report.index', ['posts' => $posts, 'cond_user' => $cond_user]);
+        return view('admin.report.index', ['posts' => $posts, 'cond_user' => $cond_user,'groups' =>$groups,'group'=>$group]);
      }
         //myPageでは自分のidで検索する→$reports = Report::where('user_id', Auth::id())->get();
     /*
@@ -44,8 +67,10 @@ class ReportController extends Controller
     //新規レポート投稿画面（get）
     public function add(Request $request)
     {
+        $your_account = Auth::user();
         $request->session()->put("fromUrl", url()->previous());
-        return view('admin.report.create');
+        $groups = $your_account->groups;
+        return view('admin.report.create',['groups' =>$groups]);
     }
     public function showMypage(Request $request)
     {
@@ -71,12 +96,11 @@ class ReportController extends Controller
     public function create(Request $request)
     {
         $report = new report;
-        $form = $request->all();
+        $form = $request->all();//レポート内容、グループ名などviewからすべて受け取っている
         unset($form['_token']);
         // データベースに保存する
         //↓ログインしているユーザーの情報を登録情報に追加している。
         $form['user_id'] = Auth::id();
-        $form['group_id'] = Auth::id();
         $report->fill($form);
         $report->save();
         //更新ボタンを押したらreport/mypage（自分のレポート一覧みれるページ）にリダイレクトする・mypage新規で作る必要あり

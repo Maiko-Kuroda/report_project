@@ -1,10 +1,10 @@
 @extends('layouts.group')
-@section('title', 'Add new room')
+@section('title', 'Add group')
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-8 mx-auto">
-            <h2>room name</h2>
+            <h2>新規グループ名</h2>
             <form action="{{action('Admin\GroupController@create')}}" method="post" enctype="multipart/group_form-data"
                 class="create-group-form">
                 @if (count($errors) > 0)

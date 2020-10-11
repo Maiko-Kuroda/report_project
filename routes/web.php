@@ -42,6 +42,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/report/mypage', 'Admin\ReportController@showMypage');
     Route::get('report', 'Admin\ReportController@index');
 
+        //検索ボタンを押すとコントローラのindexメソッドを実行します
+    Route::get('Search','Admin\ReportController@index')->name('search');
+
     Route::get('/group/add', 'Admin\GroupController@add');
     Route::post('/group/create', 'Admin\GroupController@create');
     Route::get('/group/welcome', 'Admin\GroupController@welcome');

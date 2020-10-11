@@ -11,40 +11,31 @@ class FollowController extends Controller
     {
         //$userIDはフォローした人のID
         $form = $request->all();
+        $your_account = Auth::user();
         $userId = $form['user_id'];
         // フォローしているか
-        $isFollowing = Self::isFollowing($userId);
+        $isFollowing = $your_account->isFollowing($userId);
         //フォローしてる人をデーターベースに入れる処理↓
         if ($isFollowing == false) {
-            // $follow = Follow::find($userId);
-            //フォロー テーブルを作っている
-            $follow = new Follow();
-
-            $follow->fill(['from' => Auth::id(),'to' => $userId]);
-            $follow->save();
+            $your_account->following()->attach(
+                ['from' => $your_account->id ],
+                ['to' => $userId]
+            );
         }
-        return response()->json(['isFollow' => true]);
+        return response()->json(['isFollow' => 1]);
     }
     //フォローを外す
     public function unfollow(Request $request)
     {
         $form = $request->all();
+        $your_account = Auth::user();
         $userId = $form['user_id'];
         // フォローしているか
-        $isFollowing = Self::isFollowing($userId);
-        if ($isFollowing == false) {
-            Follow::where('from', Auth::id())->where('to', $userId)->delete();
+        $isFollowing = $your_account->isFollowing($userId);
+        //フォローしてる人をデーターベースに入れる処理↓
+        if ($isFollowing == true) {
+            $your_account->following()->detach(['to' => $userId]);
         }
-        return response()->json(['isFollow' => false]);
-    }
-    // フォローしているか
-    private static function isFollowing(Int $userId)
-    {
-        return (bool) Follow::where('from', $userId)->where('to', Auth::id())->first(['id']);
-    }
-    // フォローされているか
-    public function isFollowed(Int $userId)
-    {
-        return (bool) Follow::where('from', Auth::id())->where('to', $userId)->first(['id']);
+        return response()->json(['isFollow' => 0]);
     }
 }

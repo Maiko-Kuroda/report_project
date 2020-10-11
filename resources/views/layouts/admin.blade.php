@@ -79,7 +79,7 @@
                                         <li><a href="#">グループ3</a></li>
                                     </ul>
                                 </li>      
-                                <li><a href="/group/welcome"><span class="glyphicon glyphicon-credit-card"></span> group top</a></li>
+                                <li><a href="/group/add"><span class="glyphicon glyphicon-credit-card"></span> new group</a></li>
                                 <li><a href="artist_logout.php"><span class="glyphicon glyphicon-off"></span> log out</a></li>
                             </ul>          
                         </div>

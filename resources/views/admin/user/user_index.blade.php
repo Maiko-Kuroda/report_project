@@ -1,6 +1,5 @@
 @extends('layouts.user_index')
 @section('content')
-
 <div class="container">
     <div class="row justify-content-center">
     <h2 class="head_test">ユーザー一覧</h2>
@@ -15,18 +14,22 @@
                   <a href="{{ url('users/' .$user->id) }}" class="text-secondary">{{ $user->id }}</a>
               </div>
               <div class="d-flex flex-column follow-btn">
-                  <span class="userId" data-userid={{ $user->id }}></span>
-                  <!-- <span class="isFollow" data-isFollow='false'>フォローする</span> -->
+                  <span class="userId" data-userid="{{ $user->id }}"></span>
                   <span class="follow">
-                    @if (auth()->user()->following($user->id))
+                      @php
+                        $isFollow = false;
+                        foreach ($follows as $follow) {
+                          if($follow->id === $user->id){
+                            $isFollow = true;
+                            break;
+                          }
+                        }
+                      @endphp
                       <div class="px-2">
-                        <span class="px-1 bg-secondary text-light">フォロー中</span>
+                        <span class="px-1 bg-secondary text-light isFollow" id="follow{{$user->id}}" data-isFollow="{{ $isFollow ?: 0 }}">
+                          {{ $isFollow === true ? 'フォロー中' : 'フォロー' }}
+                        </span>
                       </div>
-                    @else
-                    <div class="px-2">
-                        <span class="px-1 bg-secondary text-light">フォローする</span>
-                    </div>
-                    @endif
                   </span>
               </div>
             </div>

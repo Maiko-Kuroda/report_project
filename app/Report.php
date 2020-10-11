@@ -15,9 +15,13 @@ class Report extends Model
 
         );
         
-        //これでレポートを引っ張るときにユーザーIDと一致するものを
-        public function user()
-        {
-            return $this->belongsTo('App\User');
-        }
+    //これでレポートを引っ張るときにユーザーIDと一致するものを
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+    public function group()
+    {
+        return $this->belongsTo('App\Group');
+    }
 }

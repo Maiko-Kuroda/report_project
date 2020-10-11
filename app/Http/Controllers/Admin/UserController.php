@@ -62,7 +62,7 @@ class UserController extends Controller
                 ['user_id' => Auth::id()]
             );
         }
-        return redirect('report/mypage');
+        return redirect('user');
     }
     public function __construct()
     {
@@ -74,8 +74,8 @@ class UserController extends Controller
         //web.phpにミドルウェア、、つけた。
         $all_users = User::where('id', '<>', Auth::id())->get();
         //フォローテーブル（カラムのto）を結合。
-        $followList = Follow::where('to',Auth::id())->get();
-        return view('admin.user.user_index', ['all_users' => $all_users,'follow_list' => $]);
-       
+        $your_account = Auth::user();
+        $follows = $your_account->following;
+        return view('admin.user.user_index', ['all_users' => $all_users,'follows' => $follows]);
     }
 }

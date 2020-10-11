@@ -7,6 +7,11 @@
             <h2>今日、どうでした？</h2>
             <form action="{{action('Admin\ReportController@create')}}" method="post" enctype="multipart/form-data"
                 class="create-report-form">
+                <select class="" name="group_id">
+                    @foreach($groups as $group)
+                    <option value="{{$group->id}}">{{$group->name}}</option>
+                    @endforeach
+                </select>
                 @if (count($errors) > 0)
                 <ul>
                     @foreach($errors->all() as $e)
@@ -24,6 +29,7 @@
                     <div class="col-md-10">
                         {{ csrf_field() }}
                         <input type="submit" class="button-2" value="投稿" class="click-form">
+                    
                     </div>
                 </div>
             </form>
