@@ -6,39 +6,61 @@ use Auth;
 use App\Group;
 use App\User;
 use App\Report;
+
 class ReportController extends Controller   
 {
     // レポート一覧表示
     public function index(Request $request)
     {
+        // dd($request);
         $your_account = Auth::user();
         $query = Group::all();
         //ユーザーモデルでユーザー情報をすべて取ってくる
         //$requestのcond_userの値を$cond_userに代入
         $cond_user = $request->cond_user;
         $group = $request->input('group');
+        $posts = [];
         $groups = $your_account->groups;
-        $report = new Report();
-        if(isset($group) && $group != -1){
-            $report = $report->where('group_id', $group);
+        $serch_ids = [];
+
+        // dd($cond_user);
+        if($cond_user != ''){
+
+            $serch_ids = User::where('name','like',"%$cond_user%")->get()->toArray();
+            $serch_ids = array_column( $serch_ids, 'id' );
         }
-        if ($cond_user != '') {
-            // 検索されたら検索結果を取得する
-            $report = $report->whereHas('user', function ($query) use ($cond_user) {
-                // slugをkeywordで検索
-                $query->where('name', 'like', '%' . $cond_user . '%');
-            });
+        // dd($request->name);
+        \Log::info("----");
+        \Log::info($request->all());
+        
+        //検索条件なし、全件取得
+        if ($cond_user =='' && $group == "-1") {
+            \Log::info("検索条件なし");
+          } 
+          //名前だけ入力あり
+        else if ($cond_user != "" && $group == "-1") {
+            \Log::info("名前だけ検索");
+            // $serch_ids=[1,2];
+            $posts = Report::whereIn('user_id', $serch_ids)->get();
+            // dd($serch_ids);
+          } 
+          //グループだけ入力ありhbjhm
+        else if ($cond_user =='' && $group != "-1") {
+            \Log::info("グループだけ検索");
+            $posts = Report::where('group_id', $request->group_id)->get();
+            // dd($serch_ids);
         }
-        // dd($report->get());
-        $posts = $report->orderBy('updated_at', 'desc')->get();
-        //↓Y-m-d表記にViewで表示させたい
-        // foreach($posts as &$post){
-        //     // $date = date_create($post->created_at);
-        //     $date = date_format($post->update_at, 'Y-m-d');
-        //     $post->date = $date; //取得したレポートのデータを、Y-m-dに変換
-        // }
-        // dd($posts);
+        else {
+            // 両方の入力があった
+            \Log::info("両方検索");
+            $posts = Report::where('group_id', $request->group_id)->whereIn('user_id', $serch_ids)->get();
+            // dd($serch_ids);
+          }
+        // dd($groups);
+        // dd($query->where('group_id', $group));
+
         return view('admin.report.index', ['posts' => $posts, 'cond_user' => $cond_user,'groups' =>$groups,'group'=>$group]);
+        // return view('admin.report.index', ['posts' => $posts]);
      }
         //myPageでは自分のidで検索する→$reports = Report::where('user_id', Auth::id())->get();
     /*
@@ -49,7 +71,7 @@ class ReportController extends Controller
         return view('admin.report.report',['report' => $report]);
     }
 */
-    //新規レポート投稿画面（get）
+    //新規レポート投稿画面（get
     public function add(Request $request)
     {
         $your_account = Auth::user();
@@ -76,6 +98,7 @@ class ReportController extends Controller
         $reports = Report::where('user_id', Auth::id())->orderBy('updated_at', 'desc')->get();
         return view('admin.report.myPage', ['your_account' => $your_account, 'reports' => $reports]);
     }
+
     //新規レポート更新処理（post）
     public function create(Request $request)
     {
@@ -94,6 +117,7 @@ class ReportController extends Controller
         return redirect($toUrl);
         // リクエストのもと（グループ新規作成）
     }
+
     //レポート編集画面
     public function edit(Request $request)
     {
@@ -113,7 +137,7 @@ class ReportController extends Controller
         //④モデルのsaveメソッドを実行し、内容をデータベースに書き込む。
         $report_form =$request->all();
         unset($report_form['_token']);
-        unset($report_form['report']);
+        // unset($report_form['report']);
         $report->fill($report_form)->save();
         return redirect('admin/report/mypage');
     }

@@ -6,7 +6,7 @@ class Group extends Model
     //
     protected $guarded = array('id');
     public static $rules = array(
-        'group_name' => 'required',
+        'name' => 'required',
         // 'user_id' => 'required',
     );
     //ユーザーとグループがN:Nの関係のため

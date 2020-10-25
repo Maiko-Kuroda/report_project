@@ -47,8 +47,14 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/group/add', 'Admin\GroupController@add');
     Route::post('/group/create', 'Admin\GroupController@create');
+    Route::get('/group/edit', 'Admin\GroupController@edit')->name('groupEdit');
+    Route::post('/group/update', 'Admin\GroupController@update');
     Route::get('/group/welcome', 'Admin\GroupController@welcome');
     Route::get('/group/login', 'Admin\GroupController@enter');
+    Route::get('/group/index', 'Admin\GroupController@index');
+    Route::get('/group/delete', 'Admin\GroupController@delete');
+
+
     // Route::('/group/login', 'Admin\GroupController@enter');
     Route::post('/group/enter', 'Admin\GroupController@login');
 

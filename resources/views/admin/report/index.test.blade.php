@@ -7,6 +7,10 @@
             <div class="text-center my-4">
                 <h3 class="brown border p-2">検索</h3>
             </div>
+
+            <form method="POST" action="http://full.url/someplace" accept-charset="UTF-8">
+<input name="_token" type="hidden" value="somelongrandom string">
+
             {!! Form::open(['route' => 'search', 'method' => 'get']) !!}
                 <div class="form-group">
                     {!! Form::label('group', 'グループ:') !!}

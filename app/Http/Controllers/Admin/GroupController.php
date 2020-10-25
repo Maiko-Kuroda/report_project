@@ -33,6 +33,24 @@ class GroupController extends Controller
         return view ('admin.group.new_group');
     }
    
+    //グループ編集画面
+    public function edit(Request $request)
+    {
+        // dd($request->id);
+        $group = Group::find($request->id);
+        return view('admin.group.group_edit', ['group' => $group]);
+    }
+    //グループ編集画面(更新処理)
+    public function update(Request $request)
+    {
+        $group = Group::find($request->id);
+        $group_form = $request->all();
+        // dd($group_form);
+        unset($group_form['_token']);
+        $group->fill($group_form)->save();
+        return redirect('group/index');
+    }
+
     //グループのエントランス(get)
     public function welcome(Request $request)
     {
@@ -68,6 +86,24 @@ class GroupController extends Controller
 
     }
 
-   
+    //グループ一覧表示(get)
+   public function index(Request $request)
+   {
+    $all_groups = Group::all();
+    return view('admin.group.group_index',['all_groups' =>$all_groups]);
+   }
+
+   public function delete(Request $request)
+   {
+       // 該当するGroup Modelを取得して削除
+       Group::find($request->id)->delete();
+       // 該当するGroup に紐づくレポートを削除
+       Report::where('group_id',$request->id)->delete();
+       
+       return redirect('group/index');
+   }  
+
+
+
 
 }

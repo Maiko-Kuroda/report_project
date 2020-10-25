@@ -9,7 +9,7 @@ class Report extends Model
     //
     protected $guarded = array('id');
     public static $rules = array(
-        'body' => 'required',
+        'report' => 'required',
         'user_id' => 'required',
         'group_id' => 'required',
 
