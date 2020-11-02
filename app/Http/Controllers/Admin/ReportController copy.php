@@ -139,7 +139,7 @@ class ReportController extends Controller
         unset($report_form['_token']);
         // unset($report_form['report']);
         $report->fill($report_form)->save();
-        return redirect('admin/report/mypage');
+        return redirect('report/mypage');
     }
     //レポート削除処理
     public function delete(Request $request)

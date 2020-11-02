@@ -12,7 +12,6 @@ class Report extends Model
         'report' => 'required',
         'user_id' => 'required',
         'group_id' => 'required',
-
         );
         
     //これでレポートを引っ張るときにユーザーIDと一致するものを

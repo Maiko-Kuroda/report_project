@@ -113,9 +113,8 @@ class ReportController extends Controller
         //④モデルのsaveメソッドを実行し、内容をデータベースに書き込む。
         $report_form =$request->all();
         unset($report_form['_token']);
-        unset($report_form['report']);
         $report->fill($report_form)->save();
-        return redirect('admin/report/mypage');
+        return redirect('report/mypage');
     }
     //レポート削除処理
     public function delete(Request $request)

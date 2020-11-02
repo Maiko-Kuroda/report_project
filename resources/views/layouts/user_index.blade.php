@@ -35,57 +35,31 @@
     <div id="app">
         {{-- 画面上部に表示するナビゲーションバーです。 --}}
         <header class="navbar-laravel">
-            <!-- <div class="container d-flex justify-content-between">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a> -->
-                <!-- <nav class="navbar navbar-default">
-                    <a type="button" class="navbar-toggle" data-toggle="collapse" data-target="#defaultNavbar">
-                        <span class="material-icons h1">child_care</span>
-                    </a>
-                    <div class="collapse navbar-collapse" id="defaultNavbar" >
+            <div class="fixed-top">
+                <nav class="navbar navbar-dark bg-dark">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </nav>
+                <div class="collapse" id="navbarToggleExternalContent">
+                    <div class="bg-dark p-4">
                         <ul class="navbar-nav">
                             <li><a href="/report"><span class="glyphicon glyphicon-picture"></span> report room</a></li>
                             <li><a href="/user"><span class="glyphicon glyphicon-picture"></span> my page</a></li>
                             <li><a href="/user/index"><span class="glyphicon glyphicon-credit-card"></span> user index</a></li>
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">chenge room<b class="caret"></b></a>
+                            <!-- <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">chenge room<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">グループ１</a></li>
                                     <li><a href="#">グループ2</a></li>
                                     <li><a href="#">グループ3</a></li>
                                 </ul>
-                            </li>      
-                            <li><a href="/group/welcome"><span class="glyphicon glyphicon-credit-card"></span> group top</a></li>
+                            </li>       -->
                             <li><a href="artist_logout.php"><span class="glyphicon glyphicon-off"></span> log out</a></li>
                         </ul>          
-                    </div> 
-                </nav>  -->
-                <div class="fixed-top">
-                    <nav class="navbar navbar-dark bg-dark">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                    </nav>
-                    <div class="collapse" id="navbarToggleExternalContent">
-                        <div class="bg-dark p-4">
-                            <ul class="navbar-nav">
-                                <li><a href="/report"><span class="glyphicon glyphicon-picture"></span> report room</a></li>
-                                <li><a href="/user"><span class="glyphicon glyphicon-picture"></span> my page</a></li>
-                                <li><a href="/user/index"><span class="glyphicon glyphicon-credit-card"></span> user index</a></li>
-                                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">chenge room<b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">グループ１</a></li>
-                                        <li><a href="#">グループ2</a></li>
-                                        <li><a href="#">グループ3</a></li>
-                                    </ul>
-                                </li>      
-                                <li><a href="/group/welcome"><span class="glyphicon glyphicon-credit-card"></span> group top</a></li>
-                                <li><a href="artist_logout.php"><span class="glyphicon glyphicon-off"></span> log out</a></li>
-                            </ul>          
-                        </div>
                     </div>
                 </div>
             </div>
+        </div>
         </header>
        
 

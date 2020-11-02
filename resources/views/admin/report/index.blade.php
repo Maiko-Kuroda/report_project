@@ -8,26 +8,31 @@
             </div>
         </div>
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <form action="{{ action('Admin\ReportController@index') }}" method="get">
                         <div class="form-group row">
-                            <select class="" name="group">
-                            <option value="-1">すべて</option>
-                                @foreach($groups as $group)
-                                <option value="{{$group->id}}">{{$group->name}}</option>
-                                @endforeach
-                            </select>
-                            <label class="col-md-2">ユーザー</label>
-                            <div class="col-md-5">
-                                <div class="input-group">
-                                    {{ csrf_field() }}
-                                    <input type="text" class="form-control" name='cond_user' id="inlineFormInputGroup" placeholder="User Search">
-                                     <div class="input-group-append">
-                                        <input type="submit" class="btn btn-primary" value="検索">
-                                     </div>
-                                </div>
-                                <!-- <input type="text" class="form-control" name="cond_user" value={{ $cond_user }}> -->
-                            </div>  
+                        <label class="col-md-2">グループ & ユーザー検索</label>
+                            <div class="ml-3">
+                                
+                                <select class="" name="group">
+                                    <option value="-1">すべて</option>
+                                    @foreach($groups as $group)
+                                    <option value="{{$group->id}}">{{$group->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class = "mt-3">
+                                <div class="col-md-5">
+                                    <div class="input-group">
+                                        {{ csrf_field() }}
+                                        <input type="text" class="form-control" name='cond_user' id="inlineFormInputGroup" placeholder="User Search">
+                                        <div class="input-group-append">
+                                            <input type="submit" class="btn btn-primary" value="検索">
+                                        </div>
+                                    </div>
+                                    <!-- <input type="text" class="form-control" name="cond_user" value={{ $cond_user }}> -->
+                                </div>  
+                            </div>
                             <div class="col-md-2-button2">
                                 <!-- <div class="row">
                                     {{ csrf_field() }}
@@ -59,6 +64,7 @@
                             @foreach($posts as $report)
                                 <tr>
                                     <th></th>
+                                    
                                     <th>{{ date_format(date_create($report->update_at), 'Y-m-d') }}</th>
                                     <td>{{ $report->user->name }}</td>
                                     <td>{{ optional($report->group)->name }}</td>
