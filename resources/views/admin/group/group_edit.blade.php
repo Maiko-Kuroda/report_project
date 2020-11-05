@@ -14,15 +14,12 @@
                             @endforeach
                         </ul>
                     @endif
-               
                 <div class="from-group row">
                     <label class="col-md-2" for="report">グループ</label>
                      <div class="col-md-10">
                      <input type="text" class="form-control" name="name" value="{{ $group->name }}">
                      </div>
                 </div>
-               
-
                <div class="form-group row">
                    <div class="col-md-10">
                        <input type="hidden" name="id" value="{{ $group->id }}">

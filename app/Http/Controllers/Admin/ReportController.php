@@ -6,6 +6,8 @@ use Auth;
 use App\Group;
 use App\User;
 use App\Report;
+use Illuminate\Support\Facades\DB;
+
 class ReportController extends Controller   
 {
     // レポート一覧表示
@@ -16,12 +18,25 @@ class ReportController extends Controller
         //ユーザーモデルでユーザー情報をすべて取ってくる
         //$requestのcond_userの値を$cond_userに代入
         $cond_user = $request->cond_user;
-        $group = $request->input('group');
+        $cond_group = $request->input('group');
         $groups = $your_account->groups;
-        $report = new Report();
-        if(isset($group) && $group != -1){
-            $report = $report->where('group_id', $group);
+        
+        if (isset($cond_group) && $cond_group != -1) {
+            $report = Report::where('group_id', $cond_group);
+        } else {
+            //今自分が属しているグループと一致してるもの（どれでもwhereIn）を引っ張ってくる。
+            $group_ids = [];
+            foreach ($groups as $g) {
+                $group_ids[] = $g->id;
+            }
+            // dd($group_ids);
+            
+            $report = Report::whereIn('group_id', $group_ids);
+            // dd($report);
+            // $report = $report[0];
+            // dd($report[1]);
         }
+        
         if ($cond_user != '') {
             // 検索されたら検索結果を取得する
             $report = $report->whereHas('user', function ($query) use ($cond_user) {
@@ -29,16 +44,12 @@ class ReportController extends Controller
                 $query->where('name', 'like', '%' . $cond_user . '%');
             });
         }
-        // dd($report->get());
+
+        
+        
         $posts = $report->orderBy('updated_at', 'desc')->get();
-        //↓Y-m-d表記にViewで表示させたい
-        // foreach($posts as &$post){
-        //     // $date = date_create($post->created_at);
-        //     $date = date_format($post->update_at, 'Y-m-d');
-        //     $post->date = $date; //取得したレポートのデータを、Y-m-dに変換
-        // }
-        // dd($posts);
-        return view('admin.report.index', ['posts' => $posts, 'cond_user' => $cond_user,'groups' =>$groups,'group'=>$group]);
+        // dd($posts[0]);
+        return view('admin.report.index', ['posts' => $posts, 'cond_user' => $cond_user,'groups' =>$groups,'group'=>$cond_group]);
      }
         //myPageでは自分のidで検索する→$reports = Report::where('user_id', Auth::id())->get();
     /*

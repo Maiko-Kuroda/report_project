@@ -26,6 +26,7 @@ class GroupController extends Controller
         $group->fill($group_form);//15行めを全てを配列にしてもらっているモデルのインスタンスに要素を詰め込む
         // $group->user_id = Auth::id();
         $group->save();
+        Auth::user()->groups()->attach($group->id);//新規グループ作成時に中間テーブルに保存
         $toUrl = $request->session()->get("fromUrl");
         $request->session()->forget("formUrl");
         // return redirect($toUrl);

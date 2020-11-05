@@ -4,7 +4,13 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-pb-3 mx-auto">
+            
             <h2 class="head_test">プロフィール</h2>
+            <div class="row">
+                <div class="col-md-3 text-center " >
+                    <a class="btn w-75 btn-outline-secondary" onclick="location.href='/home'" style="	box-shadow: 0px 0px 4px  black;	border-color: #f25042;">レポート一覧</a>
+                </div>
+            </div>
             <form action="{{action('Admin\UserController@yourAccount')}}" method="get">
                 @if (count($errors) > 0)
                 <ul>
@@ -64,10 +70,10 @@
                                     <div class="col-md-12 offset-md-1">
                                         <input type="hidden" name="id" value="{{ $your_account->id }}">
                                         {{ csrf_field() }}
-                                        <input type="button" class="button" onclick="location.href='./user/edit'"
+                                        <input type="button" class="" onclick="location.href='./user/edit'"
                                             value="編集する">
                                     </div>
-                                    <input type="button" class="button" onclick="location.href='./report/mypage'"
+                                    <input type="button" class="mt-3" onclick="location.href='./report/mypage'"
                                             value="my reportへ">
                                 </div>
                                

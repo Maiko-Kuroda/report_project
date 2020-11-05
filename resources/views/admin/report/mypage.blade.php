@@ -41,7 +41,8 @@
                 @foreach($reports as $report)
 
                 <div class="form-group row">
-                    <!-- <label class="col-md-2" for="report">●</label> -->
+                    <div class = 'mt-2'>
+                    </div>
                     <div class="col-md-10 offset-md-1">
                         <div class="box26">
                             <!-- <div class="card body"> -->
