@@ -1,4 +1,4 @@
-@extends('layouts.group')
+@extends('layouts.admin')
 @section('title', 'Welcome')
 @section('content')
 
@@ -19,7 +19,7 @@
     </div>
     <div class="row">
         <div class="col-md-10 text-center offset-1">
-            <a class="btn w-75 btn-outline-secondary" onclick="location.href='./edit'" style="box-shadow: 0px 0px 4px  black;	border-color: #716040;">グループ編集</a>
+            <a class="btn w-75 btn-outline-secondary" onclick="location.href='./index'" style="box-shadow: 0px 0px 4px  black;	border-color: #716040;">グループ編集</a>
         </div>
     </div>
 

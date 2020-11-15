@@ -4,13 +4,13 @@
 <div class="container">
     <div class="page-top">
         <div class="row">
-            <h2>レポートを投稿しよう</h2>
+            <h2>Welcome!</h2>
         </div>
         <div class="row">
             <div class="col-md-8">
                 <form action="{{ action('Admin\GroupController@login') }}" method="get">
                     <div class="form-group row">
-                        <label class="col-md-2">Welcome!</label>
+                        <label class="col-md-10">レポートを投稿しよう!</label>
                           
                         <div class="col-md-2-button2">
                             <div class="row">

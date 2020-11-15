@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="page-top">
-            <div class="row">
+            <div class="row" style="margin-top:50px; margin-bottom:50px;">
                 <h2>レポート一覧</h2>
             </div>
         </div>

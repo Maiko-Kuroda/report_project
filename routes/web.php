@@ -60,7 +60,13 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Route::get('/{message}', 'UserController@index');
 
+    Route::get('/inquiry/add', 'InquiryController@add');
+    Route::get('/inquiry/create', 'InquiryController@create');
+    // Route::send(create, data, callback);
+
 });
+
+
 
 Auth::routes();
 

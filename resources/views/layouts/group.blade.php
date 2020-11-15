@@ -85,7 +85,7 @@
                 </div>
             </nav>
             <div class="collapse" id="navbarToggleExternalContent">
-                <div class="bg-dark p-4">
+                <div class="bg-light p-4">
                     <ul class="navbar-nav">
                         <li><a href="/report"><span class="glyphicon glyphicon-picture"></span> report room</a></li>
                         <li><a href="/user"><span class="glyphicon glyphicon-picture"></span> my page</a></li>
@@ -101,7 +101,6 @@
                     </ul>          
                 </div>
             </div>
-
             {{-- ここまでナビゲーションバー --}}
 
             <main class="py-4">

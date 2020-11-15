@@ -35,31 +35,6 @@
         <div id="app">
             {{-- 画面上部に表示するナビゲーションバーです。 --}}
             <header class="navbar-laravel">
-            <!-- <div class="container d-flex justify-content-between">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a> -->
-                <!-- <nav class="navbar navbar-default">
-                    <a type="button" class="navbar-toggle" data-toggle="collapse" data-target="#defaultNavbar">
-                        <span class="material-icons h1">child_care</span>
-                    </a>
-                    <div class="collapse navbar-collapse" id="defaultNavbar" >
-                        <ul class="navbar-nav">
-                            <li><a href="/report"><span class="glyphicon glyphicon-picture"></span> report room</a></li>
-                            <li><a href="/user"><span class="glyphicon glyphicon-picture"></span> my page</a></li>
-                            <li><a href="/user/index"><span class="glyphicon glyphicon-credit-card"></span> user index</a></li>
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">chenge room<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">グループ１</a></li>
-                                    <li><a href="#">グループ2</a></li>
-                                    <li><a href="#">グループ3</a></li>
-                                </ul>
-                            </li>      
-                            <li><a href="/group/welcome"><span class="glyphicon glyphicon-credit-card"></span> group top</a></li>
-                            <li><a href="artist_logout.php"><span class="glyphicon glyphicon-off"></span> log out</a></li>
-                        </ul>          
-                    </div> 
-                </nav>  -->
                 <div class="fixed-top">
                     <nav class="navbar navbar-dark bg-dark">
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,13 +47,6 @@
                                 <li><a href="/report"><span class="glyphicon glyphicon-picture"></span> report room</a></li>
                                 <li><a href="/user"><span class="glyphicon glyphicon-picture"></span> my page</a></li>
                                 <li><a href="/user/index"><span class="glyphicon glyphicon-credit-card"></span> user index</a></li>
-                                <!-- <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">chenge room<b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">グループ１</a></li>
-                                        <li><a href="#">グループ2</a></li>
-                                        <li><a href="#">グループ3</a></li>
-                                    </ul>
-                                </li>       -->
                                 <li><a href="artist_logout.php"><span class="glyphicon glyphicon-off"></span> log out</a></li>
                             </ul>          
                         </div>
@@ -87,35 +55,6 @@
             </div>
         </header>
             @section('content')
-            <nav class="navbar navbar-default">
-            <div class="container-fluid"> 
-
-                <div class="navbar-header">
-                <a type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1">
-                <span class="material-icons h1">child_care</span>
-                </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="defaultNavbar1" >
-                <ul class="nav navbar-nav">
-                    <li><a href="/report"><span class="glyphicon glyphicon-picture"></span> report room</a></li>
-                    <li><a href="./user"><span class="glyphicon glyphicon-picture"></span> my page</a></li>
-                    <li><a href="./user/index"><span class="glyphicon glyphicon-credit-card"></span> user index</a></li>
-                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">chenge room<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">グループ１</a></li>
-                            <li><a href="#">グループ2</a></li>
-                            <li><a href="#">グループ3</a></li>
-                        </ul>
-                    </li>      
-                    <li><a href="./group/welcome"><span class="glyphicon glyphicon-credit-card"></span> group top</a></li>
-                    <li><a href="artist_logout.php"><span class="glyphicon glyphicon-off"></span> log out</a></li>
-                </ul>          
-                </div>
-                <!-- /.navbar-collapse --> 
-            </div>
-            <!-- /.container-fluid --> 
-            </nav>
 
             {{-- ここまでナビゲーションバー --}}
 

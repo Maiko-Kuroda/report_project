@@ -84,13 +84,6 @@
                         <li><a href="/report"><span class="glyphicon glyphicon-picture"></span> report room</a></li>
                         <li><a href="/user"><span class="glyphicon glyphicon-picture"></span> my page</a></li>
                         <li><a href="/user/index"><span class="glyphicon glyphicon-credit-card"></span> user index</a></li>
-                        <!-- <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">chenge room<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">グループ１</a></li>
-                                <li><a href="#">グループ2</a></li>
-                                <li><a href="#">グループ3</a></li>
-                            </ul>
-                        </li>       -->
                         <li><a href="artist_logout.php"><span class="glyphicon glyphicon-off"></span> log out</a></li>
                     </ul>          
                 </div>
