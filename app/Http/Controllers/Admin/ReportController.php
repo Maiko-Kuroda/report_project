@@ -13,6 +13,7 @@ class ReportController extends Controller
     // レポート一覧表示
     public function index(Request $request)
     {
+        // dd($cond_group);
         $your_account = Auth::user();
         $query = Group::all();
         //ユーザーモデルでユーザー情報をすべて取ってくる
@@ -20,9 +21,10 @@ class ReportController extends Controller
         $cond_user = $request->cond_user;
         $cond_group = $request->input('group');
         $groups = $your_account->groups;
-        
+       
         if (isset($cond_group) && $cond_group != -1) {
             $report = Report::where('group_id', $cond_group);
+            
         } else {
             //今自分が属しているグループと一致してるもの（どれでもwhereIn）を引っ張ってくる。
             $group_ids = [];
@@ -44,9 +46,7 @@ class ReportController extends Controller
                 $query->where('name', 'like', '%' . $cond_user . '%');
             });
         }
-
-        
-        
+        // dd($report);
         $posts = $report->orderBy('updated_at', 'desc')->get();
         // dd($posts[0]);
         return view('admin.report.index', ['posts' => $posts, 'cond_user' => $cond_user,'groups' =>$groups,'group'=>$cond_group]);

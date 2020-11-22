@@ -7,10 +7,10 @@ use App\Group;
 use App\User;
 use App\Report;
 
-class ReportController extends Controller   
+class BU_ReportController extends Controller   
 {
     // レポート一覧表示
-    public function index(Request $request)
+    public function backup(Request $request)
     {
         // dd($request);
         $your_account = Auth::user();

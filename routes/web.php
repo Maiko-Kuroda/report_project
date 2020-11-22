@@ -40,10 +40,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/report/add', 'Admin\ReportController@add');
     Route::post('/report/create', 'Admin\ReportController@create');
     Route::get('/report/mypage', 'Admin\ReportController@showMypage');
-    Route::get('report', 'Admin\ReportController@index');
+    
+    Route::resource('comments', 'CommentsController', ['only' => ['store']]);
 
-        //検索ボタンを押すとコントローラのindexメソッドを実行します
-    Route::get('Search','Admin\ReportController@index')->name('search');
+    //検索ボタンを押すとコントローラのindexメソッドを実行します
+    Route::get('report','Admin\ReportController@index')->name('search');
 
     Route::get('/group/add', 'Admin\GroupController@add');
     Route::post('/group/create', 'Admin\GroupController@create');
@@ -60,8 +61,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Route::get('/{message}', 'UserController@index');
 
-    Route::get('/inquiry/add', 'InquiryController@add');
-    Route::get('/inquiry/create', 'InquiryController@create');
+    Route::get('/inquiry/add', 'Admin\InquiryController@add');
+    Route::post('/inquiry/create', 'Admin\InquiryController@create');
     // Route::send(create, data, callback);
 
 });

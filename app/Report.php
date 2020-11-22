@@ -23,4 +23,11 @@ class Report extends Model
     {
         return $this->belongsTo('App\Group');
     }
+
+    // 詳細画面
+    public function getReport(Int $report_id)
+    {
+        return $this->with('user')->where('id', $report_id)->first();
+    }
+
 }

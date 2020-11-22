@@ -6,7 +6,7 @@
         <div class="col-md-8 mx-auto">
             <h2>お問合わせ内容</h2>
             <form action="{{action('Admin\InquiryController@create')}}" method="post" enctype="multipart/form-data"
-                class="create-report-form">
+                class="create-inquiry-form">
                 
                 @if (count($errors) > 0)
                 <ul>
@@ -17,7 +17,7 @@
                 @endif
                 <div class="from-group row">
                     <div class="col-md-5">
-                    <textarea class="form-control inquiry-titlearea" name="title"
+                    <textarea class="form-control inquiry-textarea" name="title"
                         rows="20">{{ old('title') }}</textarea>
                     </div>
                 </div>
