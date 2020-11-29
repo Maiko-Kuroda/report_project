@@ -24,6 +24,16 @@ class Report extends Model
         return $this->belongsTo('App\Group');
     }
 
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
+
+    public function likes()
+    {
+        return $this->hasMany('App\Like');
+    }
+
     // 詳細画面
     public function getReport(Int $report_id)
     {

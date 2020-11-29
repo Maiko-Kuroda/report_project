@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class Like extends Model
 {
     //
     public function getComments(Int $report_id)

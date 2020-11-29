@@ -135,4 +135,38 @@ class ReportController extends Controller
         $report->delete();
         return redirect('admin/report/');
     }
+
+    public function showReport(Request $request)
+    {
+
+        $user = auth()->user();
+        $report = Report::find($request->id);//主キーを使ってデータを検索するときに「find」を使う。
+        $comment = Comment::where('report_id',$request->id)->get();//検索するカラムを指定して、データを検索するときに「where」[report_id]をつかって、コメントの中からデータを探す。
+
+        return view('report.show', [
+            'user'     => $user,
+            'report' => $report,
+            'comment' => $comment
+        ]);
+    }
+
+    //コメント更新処理（post）
+    public function createComment(Request $request)
+    {
+        $comment = new comment;
+        $form = $request->all();//レポート内容、グループ名などviewからすべて受け取っている
+        unset($form['_token']);
+        // データベースに保存する
+        //↓ログインしているユーザーの情報を登録情報に追加している。
+        $form['user_id'] = Auth::id();
+        $comment->fill($form);
+        $report->save();
+        
+        return response()->json([
+            'message' => 'OK',
+        ], 200);
+   
+    }
+
+
 }

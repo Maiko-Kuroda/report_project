@@ -40,7 +40,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/report/add', 'Admin\ReportController@add');
     Route::post('/report/create', 'Admin\ReportController@create');
     Route::get('/report/mypage', 'Admin\ReportController@showMypage');
-    
+    Route::get('/report/show', 'Admin\ReportController@showReport');
+
     Route::resource('comments', 'CommentsController', ['only' => ['store']]);
 
     //検索ボタンを押すとコントローラのindexメソッドを実行します
