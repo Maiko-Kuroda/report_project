@@ -21,6 +21,7 @@ class ReportController extends Controller
         $cond_user = $request->cond_user;
         $cond_group = $request->input('group');
         $groups = $your_account->groups;
+        // $likes = $request->report_id;
        
         if (isset($cond_group) && $cond_group != -1) {
             $report = Report::where('group_id', $cond_group);
@@ -136,17 +137,18 @@ class ReportController extends Controller
         return redirect('admin/report/');
     }
 
+    //レポート詳細画面（イイね機能できるところ）
     public function showReport(Request $request)
     {
-
+        $isLike = 0;
         $user = auth()->user();
         $report = Report::find($request->id);//主キーを使ってデータを検索するときに「find」を使う。
-        $comment = Comment::where('report_id',$request->id)->get();//検索するカラムを指定して、データを検索するときに「where」[report_id]をつかって、コメントの中からデータを探す。
+        // $comment = Comment::where('report_id',$request->id)->get();//検索するカラムを指定して、データを検索するときに「where」[report_id]をつかって、コメントの中からデータを探す。
 
-        return view('report.show', [
+        return view('admin.report.show', [
             'user'     => $user,
             'report' => $report,
-            'comment' => $comment
+            // 'comment' => $comment
         ]);
     }
 

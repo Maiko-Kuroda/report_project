@@ -42,7 +42,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/report/mypage', 'Admin\ReportController@showMypage');
     Route::get('/report/show', 'Admin\ReportController@showReport');
 
-    Route::resource('comments', 'CommentsController', ['only' => ['store']]);
+    //コメント関連
+    Route::post('/comment/create', 'Admin\CommentsController@store');
+
+    //イイね関連
+    Route::post('/like', 'Admin\LikeController@like')->name('likes.like');
+    // Route::post('/unlike', 'LikeController@like')->name('unlikes.unlike');
 
     //検索ボタンを押すとコントローラのindexメソッドを実行します
     Route::get('report','Admin\ReportController@index')->name('search');

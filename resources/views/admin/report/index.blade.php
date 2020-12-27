@@ -54,7 +54,11 @@
                                 <th width="15%">更新日時</th>
                                 <th width="10%">メンバー</th>
                                 <th width="10%">グループ</th>
-                                <th width="40%"></th>
+                                <th width="30%"></th>
+                                <th width="5%">💬</th>
+                                <th width="5%">❤️</th>
+                                <th width="5%"></th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -65,6 +69,18 @@
                                     <td>{{ $report->user->name }}</td>
                                     <td>{{ optional($report->group)->name }}</td>
                                     <td>{{ $report->report }}</td>
+                                    <td>
+                                        <p class="mb-0 text-secondary">{{ count($report->comments) }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="mb-0 text-secondary">{{ count($report->likes) }}</p>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <a href="{{ action('Admin\ReportController@showReport', ['id' => $report->id]) }}">詳細</a>
+                                        </div>
+                                    </td>
+                                    
                                 </tr>
                             @endforeach
                         </tbody>

@@ -1,23 +1,22 @@
 <?php
-
-namespace App\Http\Controllers;
-use Auth;
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Auth;
+use App\Comment;
 
 class CommentsController extends Controller
 {
-    public function store(Request $request, Comment $comment)
+    public function store(Request $request)
     {
         $user = auth()->user();
         $data = $request->all();
-        $validator = Validator::make($data, [
-            'report_id' =>['required', 'integer'],
-            'text'     => ['required', 'string', 'max:140']
-        ]);
+        $this->validate($request, Comment::$rules);
 
-        $validator->validate();
+
+        $comment = new Comment;
         $comment->commentStore($user->id, $data);
-
+        
         return back();
     }
 }

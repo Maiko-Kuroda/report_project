@@ -1,0 +1,7 @@
+.like-btn:hover {
+    cursor: pointer;
+}
+
+.like-btn {
+    margin-left: auto;
+}

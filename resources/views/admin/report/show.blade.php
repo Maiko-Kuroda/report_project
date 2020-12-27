@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.report_show')
 
 @section('content')
 <div class="container">
@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    {!! nl2br(e($report->content)) !!}
+                    {!! nl2br(e($report->report)) !!}
                 </div>
                 <div class="card-footer py-1 d-flex justify-content-end bg-white">
                     @if ($report->user->id === Auth::user()->id)
@@ -32,16 +32,35 @@
                                     <a href="{{ url('reports/' .$report->id .'/edit') }}" class="dropdown-item">編集</a>
                                     <button type="submit" class="dropdown-item del-btn">削除</button>
                                 </form>
-                            </div>
+                            </div>  
                         </div>
                     @endif
                     <div class="mr-3 d-flex align-items-center">
                         <a href="{{ url('reports/' .$report->id) }}"><i class="far fa-comment fa-fw"></i></a>
                         <p class="mb-0 text-secondary">{{ count($report->comments) }}</p>
                     </div>
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center like-btn">
+                        <span class="reportId" data-reportId="{{ $report->id }}"></span>
+                        <span class="like">
+                            @php
+                            $isLike = false;
+                            foreach ($report->likes as $like) {
+                            if($like->user_id === Auth::id()){
+                                $isLike = true;
+                                break;
+                            }
+                            }
+                            @endphp
+
+                            <div class="px-2">
+                                <span class="px-1 bg-secondary text-light isLike" id="like{{$report->id}}" data-isLike="{{ $isLike ?: 0 }}">
+                                {{ $isLike === true ? 'イイね中' : 'イイね' }}
+                                </span>
+                            </div>
+                        </span>
+                        
                         <button type="" class="btn p-0 border-0 text-primary"><i class="far fa-heart fa-fw"></i></button>
-                        <p class="mb-0 text-secondary">{{ count($report->favorites) }}</p>
+                        <p class="mb-0 text-secondary" id="like_count">{{ count($report->likes) }}</p>
                     </div>
                 </div>
             </div>
@@ -52,7 +71,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8 mb-3">
             <ul class="list-group">
-                @forelse ($comments as $comment)
+                @forelse ($report->comments as $comment)
                     <li class="list-group-item">
                         <div class="py-3 w-100 d-flex">
                             <img src="{{ asset('storage/profile_image/' .$comment->user->profile_image) }}" class="rounded-circle" width="50" height="50">
@@ -75,7 +94,7 @@
                 @endforelse
                 <li class="list-group-item">
                     <div class="py-3">
-                        <form method="POST" action="{{ route('comments.store') }}">
+                        <form action="{{action('Admin\CommentsController@store')}}" method="post">
                             @csrf
 
                             <div class="form-group row mb-0">
