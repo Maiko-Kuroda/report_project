@@ -27,8 +27,8 @@ body {
 }
 
 .list-group-item {
-    border-color: #fff;
-    background-color: #000;
+    border-color: #000;
+    /* background-color: #000; */
 }
 
 .login-box {

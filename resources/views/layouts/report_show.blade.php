@@ -30,6 +30,7 @@
     {{-- この章の後半で作成するCSSを読み込みます --}}
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
     <link href="{{ asset('css/like.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/report.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">

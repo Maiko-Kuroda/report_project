@@ -33,20 +33,4 @@ class LikeController extends Controller
         ];
         return response()->json($param); //6.JSONデータをjQueryに返す
     }
-
-    // //いいねを外す
-    // public function unlike(Request $request)
-    // {
-    //     $form = $request->all();
-    //     $your_account = Auth::user();
-    //     $userId = $form['user_id'];
-    //     // フォローしているか
-    //     $isLike = $your_account->isFollowing($userId);
-    //     //フォローしてる人をデーターベースに入れる処理↓
-    //     if ($isFollowing == true) {
-    //         $your_account->following()->detach(['to' => $userId]);
-    //     }
-    //     return response()->json(['isFollow' => 0]);
-    // }
-
 }

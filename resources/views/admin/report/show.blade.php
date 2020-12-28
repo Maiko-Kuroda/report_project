@@ -39,6 +39,7 @@
                         <a href="{{ url('reports/' .$report->id) }}"><i class="far fa-comment fa-fw"></i></a>
                         <p class="mb-0 text-secondary">{{ count($report->comments) }}</p>
                     </div>
+                    
                     <div class="d-flex align-items-center like-btn">
                         <span class="reportId" data-reportId="{{ $report->id }}"></span>
                         <span class="like">

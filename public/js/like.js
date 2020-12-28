@@ -25,11 +25,11 @@ $(function () {
             // リクエスト成功時の処理
             .done(function (data) {
                 // Laravel内で処理された結果がdataに入って返ってくる
-                console.log(data['isLike']);
+                console.log(data);
                 // ステータス更新
                 $($isLikeTmp).attr('data-isLike', data['isLike']);
                 $($isLikeTmp).text(data['isLike'] == true ? 'イイね中' : 'イイね');
-                $("like_count").text(data['revew_likes_count']);
+                $("#like_count").text(data['review_likes_count']);
             })
 
             // .done(function (data) //コントローラーからのリターンされた値をdataとして指定
