@@ -66,7 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/group/enter', 'Admin\GroupController@login');
 
     // Route::get('/{message}', 'UserController@index');
-
+    //問合せメール送信
     Route::get('/inquiry/add', 'Admin\InquiryController@add');
     Route::post('/inquiry/create', 'Admin\InquiryController@create');
     // Route::send(create, data, callback);

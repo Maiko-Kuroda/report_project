@@ -17,9 +17,13 @@ class InquiryController extends Controller
     //問合せ内容を保存 → メール送る(post)
     public function create(Request $request){
         // メールの宛先取得
-        $user = User::where('isAdmin', 1)->first();
-        $to = $user->email;
-        Mail::to($to)->send(new InquiryMail(Auth::user()));
+        $user = User::where('isAdmin', 1)->get();//1つしかアドレスを取らないでイイ場合は->first()
+        // $to=[];
+        foreach($user as $mail_send_to){
+            $mail_send_to->email;
+            Mail::to($mail_send_to)->send(new InquiryMail($request->all()));
+        }
+        
         //↑今はユーザー情報しか入らない。本文を入れるならば(Auth::user(),○○)という感じで情報を入れる
         
         // $inquiry = new inquiry;
@@ -33,6 +37,7 @@ class InquiryController extends Controller
         // //↓フォームに入力された内容にDBに保存するアクション
         $toUrl = $request->session()->get("fromUrl");
         $request->session()->forget("formUrl");
-        return redirect($toUrl);
+
+        return redirect('/home');
     }
 }

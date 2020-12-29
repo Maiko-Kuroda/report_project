@@ -1,10 +1,10 @@
 @extends('layouts.report')
-@section('title', '問合せ内容の投稿')
+@section('title', 'contact')
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-8 mx-auto">
-            <h2>お問合わせ内容</h2>
+            <h2>問合せ</h2>
             <form action="{{action('Admin\InquiryController@create')}}" method="post" enctype="multipart/form-data"
                 class="create-inquiry-form">
                 
@@ -16,21 +16,25 @@
                 </ul>
                 @endif
                 <div class="from-group row">
-                    <div class="col-md-5">
-                    <textarea class="form-control inquiry-textarea" name="title"
-                        rows="20">{{ old('title') }}</textarea>
+                    <div class="col-md-3">
+                        <p class="h6">件名</p>
+                        <input type ="text" name="title"
+                        rows="20">{{ old('title') }}
                     </div>
                 </div>
 
                 <div class="from-group row">
                     <div class="col-md-10">
-                    <textarea class="form-control inquiry-textarea" name="inquiry"
+                        <p class="h6">内容</p>
+                        <textarea rows="10" cols="60" class="form-control inquiry-textarea" name="inquiry"
                         rows="20">{{ old('inquiry') }}</textarea>
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-md-10">
                         {{ csrf_field() }}
+                        <input type="hidden" name="name" value="{{ Auth::user()->name}}">
+                        <input type="hidden" name="email" value="{{ Auth::user()->email}}">
                         <input type="submit" class="button-2" value="投稿" class="click-form">
                     
                     </div>

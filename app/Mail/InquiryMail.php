@@ -25,9 +25,9 @@ class InquiryMail extends Mailable
     public function build()
     {
         return $this->view('mail.inquiry')
-        ->subject('メッセージを受け付けました')
-        //ここに問合せのパラメーターを渡す必要あり※未設定
-        ->from("管理者ようのメールアドレスにする","表示名にかえる")
+        ->subject($this->data['title'])
+        //ここに問合せのパラメーターを渡す
+        ->from("no_reply@gmail.com","お問合せ受付")
         ->with('data', $this->data);
         // $this->dataにデータがはいるとinquiry.blade.phpの内容が反映
         //
