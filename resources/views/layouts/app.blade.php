@@ -23,97 +23,57 @@
 <body>
     <div id="app">
     <header class="navbar-laravel">
-            <!-- <div class="container d-flex justify-content-between">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a> -->
-                <!-- <nav class="navbar navbar-default">
-                    <a type="button" class="navbar-toggle" data-toggle="collapse" data-target="#defaultNavbar">
-                        <span class="material-icons h1">child_care</span>
-                    </a>
-                    <div class="collapse navbar-collapse" id="defaultNavbar" >
-                        <ul class="navbar-nav">
-                            <li><a href="/report"><span class="glyphicon glyphicon-picture"></span> report room</a></li>
-                            <li><a href="/user"><span class="glyphicon glyphicon-picture"></span> my page</a></li>
-                            <li><a href="/user/index"><span class="glyphicon glyphicon-credit-card"></span> user index</a></li>
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">chenge room<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">グループ１</a></li>
-                                    <li><a href="#">グループ2</a></li>
-                                    <li><a href="#">グループ3</a></li>
-                                </ul>
-                            </li>      
-                            <li><a href="/group/welcome"><span class="glyphicon glyphicon-credit-card"></span> group top</a></li>
-                            <li><a href="artist_logout.php"><span class="glyphicon glyphicon-off"></span> log out</a></li>
-                        </ul>          
-                    </div> 
-                </nav>  -->
-                <div class="fixed-top">
-                    <nav class="navbar navbar-dark bg-dark">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                    </nav>
-                    <div class="collapse" id="navbarToggleExternalContent">
-                        <div class="bg-dark p-4">
-                            <ul class="navbar-nav">
-                                <li><a href="/report"><span class="glyphicon glyphicon-picture"></span> report room</a></li>
-                                <li><a href="/user"><span class="glyphicon glyphicon-picture"></span> my page</a></li>
-                                <li><a href="/user/index"><span class="glyphicon glyphicon-credit-card"></span> user index</a></li>
-                                <!-- <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">chenge room<b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">グループ１</a></li>
-                                        <li><a href="#">グループ2</a></li>
-                                        <li><a href="#">グループ3</a></li>
-                                    </ul>
-                                </li>       -->
-                                <li><a href="artist_logout.php"><span class="glyphicon glyphicon-off"></span> log out</a></li>
-                            </ul>          
-                        </div>
-                    </div>
+        <div class="fixed-top">
+            <nav class="navbar navbar-dark bg-dark">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </nav>
+            <div class="collapse" id="navbarToggleExternalContent">
+                <div class="bg-dark p-4">
+                    <ul class="navbar-nav">
+                        <li><a href="/report"><span class="glyphicon glyphicon-picture"></span> report room</a></li>
+                        <li><a href="/user"><span class="glyphicon glyphicon-picture"></span> my page</a></li>
+                        <li><a href="/user/index"><span class="glyphicon glyphicon-credit-card"></span> user index</a></li>
+                        <li><a href="/inquiry/add"><span class="glyphicon glyphicon-picture"></span> contact</a></li>
+                        <li><a href="artist_logout.php"><span class="glyphicon glyphicon-off"></span> log out</a></li>
+                    </ul>          
                 </div>
             </div>
-        </header>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+        </div>
+    </header>
+<!-- Right Side Of Navbar -->
+<ul class="navbar-nav ml-auto">
+    <!-- Authentication Links -->
+    @guest
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+        </li>
+        @if (Route::has('register'))
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+            </li>
+        @endif
+    @else
+        <li class="nav-item dropdown">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                {{ Auth::user()->name }} <span class="caret"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
             </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+        </li>
+    @endguest
+</ul>
+    <main class="py-4">
+        @yield('content')
+    </main>
 </body>
 </html>

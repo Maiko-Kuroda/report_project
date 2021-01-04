@@ -5,8 +5,8 @@
     <div class="row justify-content-center mb-5">
         <div class="col-md-8 mb-3">
             <div class="card">
-                <div class="card-haeder p-3 w-100 d-flex">
-                    <img src="{{ asset('storage/profile_image/' .$report->user->profile_image) }}" class="rounded-circle" width="50" height="50">
+                <div class="card-haeder p-3 w-20 d-flex">
+                    <class="rounded-circle" width="30" height="30">
                     <div class="ml-2 d-flex flex-column">
                         <p class="mb-0">{{ $report->user->name }}</p>
                         <a href="{{ url('users/' .$report->user->id) }}" class="text-secondary">{{ $report->user->screen_name }}</a>
@@ -19,7 +19,7 @@
                     {!! nl2br(e($report->report)) !!}
                 </div>
                 <div class="card-footer py-1 d-flex justify-content-end bg-white">
-                    @if ($report->user->id === Auth::user()->id)
+                    <!-- @if ($report->user->id === Auth::user()->id)
                         <div class="dropdown mr-3 d-flex align-items-center">
                             <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-ellipsis-v fa-fw"></i>
@@ -34,7 +34,7 @@
                                 </form>
                             </div>  
                         </div>
-                    @endif
+                    @endif -->
                     <div class="mr-3 d-flex align-items-center">
                         <a href="{{ url('reports/' .$report->id) }}"><i class="far fa-comment fa-fw"></i></a>
                         <p class="mb-0 text-secondary">{{ count($report->comments) }}</p>
@@ -71,11 +71,54 @@
     <!-- ここから下をコメントゾーン -->
     <div class="row justify-content-center">
         <div class="col-md-8 mb-3">
+            <li class="list-group-item">
+                <div class="py-3">
+                    <form action="{{action('Admin\CommentsController@store')}}" method="post">
+                        @csrf
+                        <div class="form-group row mb-10">
+                            <div class="col-md-12 p-1 w-100 d-flex">
+                                <class="rounded-circle" width="50" height="50">
+                                <div class="ml-2 d-flex flex-column">
+
+                                    <p class="mb-0">{{ $user->name }}</p>
+                                    <a href="{{ url('users/' .$user->id) }}" class="text-secondary">{{ $user->screen_name }}</a>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="hidden" name="report_id" value="{{ $report->id }}">
+                                <textarea class="form-control @error('content') is-invalid @enderror" name="content" required autocomplete="content" rows="4">{{ old('content') }}</textarea>
+
+                                @error('content')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-12 text-right">
+                                <p class="mb-4 text-danger">140文字以内</p>
+                                <button type="submit" class="btn btn-primary">
+                                    投稿する
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </li>
+        </div>
+
+
+        <div class="col-md-8 mb-3">
             <ul class="list-group">
+
+            
+
                 @forelse ($report->comments as $comment)
                     <li class="list-group-item">
                         <div class="py-3 w-100 d-flex">
-                            <img src="{{ asset('storage/profile_image/' .$comment->user->profile_image) }}" class="rounded-circle" width="50" height="50">
+                            <class="rounded-circle" width="50" height="50">
                             <div class="ml-2 d-flex flex-column">
                                 <p class="mb-0">{{ $comment->user->name }}</p>
                                 <a href="{{ url('users/' .$comment->user->id) }}" class="text-secondary">{{ $comment->user->screen_name }}</a>
@@ -93,43 +136,7 @@
                         <p class="mb-0 text-secondary">コメントはまだありません。</p>
                     </li>
                 @endforelse
-                <li class="list-group-item">
-                    <div class="py-3">
-                        <form action="{{action('Admin\CommentsController@store')}}" method="post">
-                            @csrf
-
-                            <div class="form-group row mb-0">
-                                <div class="col-md-12 p-3 w-100 d-flex">
-                                    <img src="{{ asset('storage/profile_image/' .$user->profile_image) }}" class="rounded-circle" width="50" height="50">
-                                    <div class="ml-2 d-flex flex-column">
-
-                                        <p class="mb-0">{{ $user->name }}</p>
-                                        <a href="{{ url('users/' .$user->id) }}" class="text-secondary">{{ $user->screen_name }}</a>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <input type="hidden" name="report_id" value="{{ $report->id }}">
-                                    <textarea class="form-control @error('content') is-invalid @enderror" name="content" required autocomplete="content" rows="4">{{ old('content') }}</textarea>
-
-                                    @error('content')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row mb-0">
-                                <div class="col-md-12 text-right">
-                                    <p class="mb-4 text-danger">140文字以内</p>
-                                    <button type="submit" class="btn btn-primary">
-                                        投稿する
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </li>
+                
             </ul>
         </div>
     </div>

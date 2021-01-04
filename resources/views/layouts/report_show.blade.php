@@ -35,38 +35,52 @@
 <body>
     <div id="app">
         {{-- 画面上部に表示するナビゲーションバーです。 --}}
-        <header class="navbar-laravel">
-            <div class="fixed-top">
-                <nav class="navbar navbar-dark bg-dark">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                </nav>
-                <div class="collapse" id="navbarToggleExternalContent">
-                    <div class="bg-dark p-4">
+        <nav class="navbar navbar-dark navbar-laravel">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav mr-auto">
                         <ul class="navbar-nav">
                             <li><a href="/report"><span class="glyphicon glyphicon-picture"></span> report room</a></li>
                             <li><a href="/user"><span class="glyphicon glyphicon-picture"></span> my page</a></li>
                             <li><a href="/user/index"><span class="glyphicon glyphicon-credit-card"></span> user index</a></li>
-                            <!-- <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">chenge room<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">グループ１</a></li>
-                                    <li><a href="#">グループ2</a></li>
-                                    <li><a href="#">グループ3</a></li>
-                                </ul>
-                            </li>       -->
-                            <li><a href="artist_logout.php"><span class="glyphicon glyphicon-off"></span> log out</a></li>
-                        </ul>          
-                    </div>
-                </div>
+                            <li><a href="/inquiry/add"><span class="glyphicon glyphicon-picture"></span> contact</a></li>
+                        </ul>  
+                    </ul> 
+                </div>       
             </div>
-        </div>
-        </header>
-       
+                    
+            <!-- Right Side Of Navbar -->
+            <ul class="navbar-nav ml-auto">
+                    <!-- Authentication Links -->
+                {{-- ログインしていなかったらログイン画面へのリンクを表示 --}}
+                @guest
+                    <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
+                @else
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
 
-        @section('content')
-            
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
 
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                @endguest
+            </ul>
+        </nav>
         {{-- ここまでナビゲーションバー --}}
         <main class="py-4">
             {{-- コンテンツをここに入れるため、@yieldで空けておきます。 --}}
